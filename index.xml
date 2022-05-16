@@ -6,5 +6,14 @@
     <description>Recent content on The Machine Codex</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About this blog</title>
+      <link>/about/</link>
+      <pubDate>Mon, 16 May 2022 05:46:37 -0400</pubDate>
+      
+      <guid>/about/</guid>
+      <description>I&amp;rsquo;m a writer, programmer, and film photographer, roughly in that order. Anything else I write about can be found in the tags.</description>
+    </item>
+    
   </channel>
 </rss>
