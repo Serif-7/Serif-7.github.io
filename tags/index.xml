@@ -5,6 +5,25 @@
     <link>/tags/</link>
     <description>Recent content in Tags on The Machine Codex</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Tue, 17 May 2022 22:51:10 -0400</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>gaming</title>
+      <link>/tags/gaming/</link>
+      <pubDate>Tue, 17 May 2022 22:51:10 -0400</pubDate>
+      
+      <guid>/tags/gaming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>reference</title>
+      <link>/tags/reference/</link>
+      <pubDate>Tue, 17 May 2022 22:51:10 -0400</pubDate>
+      
+      <guid>/tags/reference/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

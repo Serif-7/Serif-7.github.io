@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>The Modern Gamer&#39;s Guide to Running Morrowind - The Machine Codex</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Ah, Morrowind. Widely regarded as one of the best RPGs of all time. It was my first RPG at around four or five years old, though I don&rsquo;t think I ever got out of Seyda Neen. It&rsquo;s a great game and an important landmark in gaming history. Personally, I would argue it is Bethesda&rsquo;s &lsquo;purest&rsquo; RPG.
+Sadly, it has not aged well. Playing it today, when we&rsquo;re all spoiled with modern conveniences, is kind of like reading a classic novel." />
+	<meta property="og:image" content=""/>
+	<meta property="og:title" content="The Modern Gamer&#39;s Guide to Running Morrowind" />
+<meta property="og:description" content="Ah, Morrowind. Widely regarded as one of the best RPGs of all time. It was my first RPG at around four or five years old, though I don&rsquo;t think I ever got out of Seyda Neen. It&rsquo;s a great game and an important landmark in gaming history. Personally, I would argue it is Bethesda&rsquo;s &lsquo;purest&rsquo; RPG.
+Sadly, it has not aged well. Playing it today, when we&rsquo;re all spoiled with modern conveniences, is kind of like reading a classic novel." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/openmw/" />
+<meta property="article:published_time" content="2022-05-17T22:51:10-04:00" />
+<meta property="article:modified_time" content="2022-05-17T22:51:10-04:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="The Modern Gamer&#39;s Guide to Running Morrowind"/>
+<meta name="twitter:description" content="Ah, Morrowind. Widely regarded as one of the best RPGs of all time. It was my first RPG at around four or five years old, though I don&rsquo;t think I ever got out of Seyda Neen. It&rsquo;s a great game and an important landmark in gaming history. Personally, I would argue it is Bethesda&rsquo;s &lsquo;purest&rsquo; RPG.
+Sadly, it has not aged well. Playing it today, when we&rsquo;re all spoiled with modern conveniences, is kind of like reading a classic novel."/>
+<script src="/js/feather.min.js"></script>
+	
+	
+        <link href="/css/fonts.b685ac6f654695232de7b82a9143a46f9e049c8e3af3a21d9737b01f4be211d1.css" rel="stylesheet">
+	
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.31cfe15e006880ab1d33cb5de1538befc1aed3926f793e9ecc8df26b562c205d.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css"  disabled />
+	
+	
+	
+</head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="/">The Machine Codex</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/about">About</a>
+		
+		<a href="/posts">All posts</a>
+		
+		<a href="/tags">Tags</a>
+		
+		| <a id="dark-mode-toggle" onclick="toggleTheme()" href=""></a>
+		<script src="/js/themetoggle.js"></script>
+		
+	</nav>
+</header>
+
+<main>
+	<article>
+		<div class="title">
+			<h1 class="title">The Modern Gamer&#39;s Guide to Running Morrowind</h1>
+			<div class="meta">Posted on May 17, 2022</div>
+		</div>
+		
+
+		<section class="body">
+			<p>Ah, Morrowind. Widely regarded as one of the best RPGs of all time. It was my first RPG at around four or five years old, though I don&rsquo;t think I ever got out of Seyda Neen. It&rsquo;s a great game and an important landmark in gaming history. Personally, I would argue it is Bethesda&rsquo;s &lsquo;purest&rsquo; RPG.</p>
+<p>Sadly, it has not aged well. Playing it today, when we&rsquo;re all spoiled with modern conveniences, is kind of like reading a classic novel. You know it&rsquo;s good for you, but it&rsquo;s a slow and annoying kind of fun. Thankfully, though, some kind souls have resurrected it for today&rsquo;s audience in the form of OpenMW.</p>
+<h1 id="what-is-openmw">What is OpenMW?</h1>
+<p>OpenMW is a from-scratch reimplementation of Bethesda&rsquo;s Gamebryo engine, which Morrowind runs on. Essentially, they&rsquo;ve remade the entire game from the ground up. Before you ask, no that isn&rsquo;t illegal. But it doesn&rsquo;t mean Morrowind is suddenly free either. All the game assets(voice lines, textures, etc) are still under copyright, so you still need to buy a copy of Morrowind and point OpenMW to where the assets are located on your computer.</p>
+<p>OpenMW comes with a lot of extra benefits over the original, such as:</p>
+<ul>
+<li>2147483646 mod limit, up from 255 for vanilla Morrowind</li>
+<li>Multiple quicksaves</li>
+<li>Quality of life improvements, such as being able to search for spells</li>
+<li>Native support for macOS, Linux, and Windows. There&rsquo;s even an Android version!</li>
+<li>Improved physics and AI</li>
+<li>Greatly improved graphics <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></li>
+<li>You can cancel a nocked arrow now.</li>
+<li>Much more. The full feature list is [here]</li>
+</ul>
+<p>But there are some cons as well. Any mods requiring Morrowind Script Extender (MWSE), Morrowind Code Patch (MCP), Morrowind Graphics Extender (MGE) will not work, because they all relied on modifying the original game engine. OpenMW was written from scratch, so none of those extenders are compatible. Any other mods will likely work fine, though there are exceptions.</p>
+<p>The full docs of the game are <a href="https://openmw.readthedocs.io/en/latest/index.html">here.</a> Click on &lsquo;Installation Guide&rsquo; to get started. For more info, I recommend joining the discord. You can find the link on the official site <a href="https://openmw.org/en/">here.</a></p>
+<h1 id="tweaking-launcher-options">Tweaking Launcher Options</h1>
+<p>The &lsquo;Advanced&rsquo; menu in the launcher has a lot of little configuration options that are worth looking at. If you don&rsquo;t want to think about it right now, I personally recommend turning these ones on:</p>
+<p><em>If you want to know what each of these do in detail, hover over each option in the launcher with the mouse and a tooltip will pop up.</em></p>
+<p><strong>Game Mechanics</strong></p>
+<ul>
+<li>Toggle sneak</li>
+<li>Build nav mesh for world geometry</li>
+<li>NPCs avoid collisions</li>
+<li>Permanent barter disposition change</li>
+<li>Can loot during death animation</li>
+</ul>
+<p><strong>Visuals</strong></p>
+<ul>
+<li>Smooth movement</li>
+<li>Turn to movement direction</li>
+<li>Radial fog</li>
+<li>Bump/reflect local map lighting</li>
+<li>Distant land</li>
+</ul>
+<p><strong>Interface</strong></p>
+<p>I personally turn all of these on. They just provide more exact information on weapons, effect durations, enchantment chances, etc.</p>
+<p><strong>Bug fixes</strong></p>
+<ul>
+<li>Merchant equipping fix</li>
+<li>Trainers choose their training skills based on their base skill points</li>
+</ul>
+<p><strong>Miscellaneous</strong></p>
+<ul>
+<li>Add &ldquo;Time Played&rdquo; to saves</li>
+<li>Raise max quicksaves to 5</li>
+</ul>
+<h1 id="thats-cool-and-all-but-what-about-mods">That&rsquo;s cool and all but what about <em><strong>Mods?</strong></em></h1>
+<p>Of course, what&rsquo;s a Bethesda game without mods? <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> OpenMW has made huge strides with regards to modding support. The devs have added native Lua scripting, something that MWSE provided for the base game. No more weird proprietary Bethesda scripting language, just use Lua. They&rsquo;ve added a hundred other features as well, most of which can found in the modding reference <a href="https://openmw.readthedocs.io/en/latest/reference/modding/index.html">here.</a></p>
+<p>For mod users, the site to look at is <a href="https://modding-openmw.com/">modding-openmw.com</a>. The community has collected modlists and resources for modding. It should contain all the information you need to get started. The essential reference for installing mods is this <a href="https://openmw.readthedocs.io/en/latest/reference/modding/mod-install.html#install">docs page</a>.</p>
+<p>There is also a mod manager made for the game; it&rsquo;s called <a href="https://portmod.gitlab.io/portmod/index.html">Portmod</a>. If you&rsquo;re on Windows, then Vortex or Mod Organizer will work fine, but on Linux they can be a little janky. Portmod may be the best solution. While the docs are decent, I may edit this page to include a guide on basic usage in the future.</p>
+<p>Alright, that should be it. Hopefully I&rsquo;ve prepared you well enough to enjoy this gem of a game in our modern times. Enjoy yourself, N&rsquo;wah.</p>
+<p><em><strong>Note: This is a reference post, which means it&rsquo;s for informational purposes only. I may edit it at any time if I realize things need to be added, changed, or removed.</strong></em></p>
+<h1 id="footnotes">Footnotes</h1>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://openmw.org/media/">Screenshots on the official website</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>Very little.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+		</section>
+
+		<div class="post-tags">
+			
+			
+			<nav class="nav tags">
+				<ul class="tags">
+					
+					<li><a href="/tags/gaming">gaming</a></li>
+					
+					<li><a href="/tags/reference">reference</a></li>
+					
+				</ul>
+			</nav>
+			
+			
+		</div>
+	</article>
+</main>
+<footer>
+  <div style="display:flex"></div>
+  <div class="footer-info">
+    2022  <a
+      href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>
+  </div>
+</footer>
+
+
+</div>
+    </body>
+</html>
