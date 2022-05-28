@@ -26,5 +26,14 @@ Sadly, it has not aged well. Playing it today, when we&amp;rsquo;re all spoiled 
       <description>Welcome to my pretentiously-named blog. I&amp;rsquo;m Serif. I&amp;rsquo;m a writer, programmer, and film photographer, roughly in that order. Anything else I&amp;rsquo;m interested in can be found in the tags.</description>
     </item>
     
+    <item>
+      <title>Photos</title>
+      <link>/photos/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/photos/</guid>
+      <description>This is a gallery of some of my favorite photos. All were shot on 35mm film.</description>
+    </item>
+    
   </channel>
 </rss>
