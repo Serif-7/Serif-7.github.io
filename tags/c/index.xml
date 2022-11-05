@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C on Codex Absurdia</title>
+    <link>/tags/c/</link>
+    <description>Recent content in C on Codex Absurdia</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 21 Jun 2022 21:38:24 -0400</lastBuildDate><atom:link href="/tags/c/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Programming from Zero</title>
+      <link>/posts/programming_from_zero/</link>
+      <pubDate>Tue, 21 Jun 2022 21:38:24 -0400</pubDate>
+      
+      <guid>/posts/programming_from_zero/</guid>
+      <description>You could say that it has never been easier to learn how to program. Python tutorials abound, there is an endless number of free courses, an even more endless number of free books, et cetera, et cetera.
+However, when I was first learning to write code, those tutorials did not tell me what I wanted to know. What I wanted to know was how a computer works, and what what does it mean to program it?</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Programming from Zero - Codex Absurdia</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="You could say that it has never been easier to learn how to program. Python tutorials abound, there is an endless number of free courses, an even more endless number of free books, et cetera, et cetera.
+However, when I was first learning to write code, those tutorials did not tell me what I wanted to know. What I wanted to know was how a computer works, and what what does it mean to program it?" />
+	<meta property="og:image" content=""/>
+	<meta property="og:title" content="Programming from Zero" />
+<meta property="og:description" content="You could say that it has never been easier to learn how to program. Python tutorials abound, there is an endless number of free courses, an even more endless number of free books, et cetera, et cetera.
+However, when I was first learning to write code, those tutorials did not tell me what I wanted to know. What I wanted to know was how a computer works, and what what does it mean to program it?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/programming_from_zero/" />
+<meta property="article:published_time" content="2022-06-21T21:38:24-04:00" />
+<meta property="article:modified_time" content="2022-06-21T21:38:24-04:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Programming from Zero"/>
+<meta name="twitter:description" content="You could say that it has never been easier to learn how to program. Python tutorials abound, there is an endless number of free courses, an even more endless number of free books, et cetera, et cetera.
+However, when I was first learning to write code, those tutorials did not tell me what I wanted to know. What I wanted to know was how a computer works, and what what does it mean to program it?"/>
+<script src="/js/feather.min.js"></script>
+	
+	
+        <link href="/css/fonts.b685ac6f654695232de7b82a9143a46f9e049c8e3af3a21d9737b01f4be211d1.css" rel="stylesheet">
+	
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.31cfe15e006880ab1d33cb5de1538befc1aed3926f793e9ecc8df26b562c205d.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css"  disabled />
+	
+	
+	
+</head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="/">Codex Absurdia</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/about">About</a>
+		
+		<a href="/posts">All posts</a>
+		
+		<a href="/tags">Tags</a>
+		
+		<a href="/photos">Photos</a>
+		
+		| <a id="dark-mode-toggle" onclick="toggleTheme()" href=""></a>
+		<script src="/js/themetoggle.js"></script>
+		
+	</nav>
+</header>
+
+<main>
+	<article>
+		<div class="title">
+			<h1 class="title">Programming from Zero</h1>
+			<div class="meta">Posted on Jun 21, 2022</div>
+		</div>
+		
+
+		<section class="body">
+			<p>You could say that it has never been easier to learn how to program. Python tutorials abound, there is an endless number of free courses, an even more endless number of free books,  et cetera, et cetera.</p>
+<p>However, when I was first learning to write code, those tutorials did not tell me what I wanted to know. What I wanted to know was <em>how a computer works</em>, and what <em>what does it mean to program it?</em> I wanted context and understanding, not just to be told to type magic words and marvel at the fact that I can print numbers on a screen.</p>
+<p>There is an ocean of resources for beginners on getting a computer to do what you want, but not much that provides any context for what your programs are actually doing. If you&rsquo;re learning because you have a specific thing you want to make and that&rsquo;s all you care about, then that&rsquo;s fine. But for a person who is simply curious about how the machines we use everyday work, that&rsquo;s not enough.</p>
+<p>So, I am going to write the programming tutorial I wish I had when I was learning. I will teach you, from zero, the basics of how a computer works, and what &lsquo;programming&rsquo; actually means. But since the topic of &lsquo;how a computer works&rsquo; is deeper than the ocean, I am going to have to simplify a huge amount. You will get the big picture, and I will provide links to extra resources if there&rsquo;s a particular area you want to dive into deeper.</p>
+<p>This post is meant to <em>teach</em>, not just give you a tutorial, so it will be pretty long. I suggest you get a hot beverage.</p>
+<h1 id="how-does-a-machine-do-math">How Does a Machine do Math?</h1>
+<p>We call it a computer because, first and foremost, it computes. It does math. &lsquo;How?&rsquo;, we ask. It&rsquo;s actually not that complicated.</p>
+<p>This is a circuit diagram. Those lines are wires, and that little sign there that says <strong>AND</strong> is what we call a <em>logic gate</em>. Basically</p>
+<h2 id="the-basics-of-computer-architecture">The Basics of Computer Architecture</h2>
+<p>A machine needs three basic components to be considered a &lsquo;computer&rsquo;. We&rsquo;ll list them here and then go into detail:</p>
+<ol>
+<li>
+<p>A CPU. CPU stands for &lsquo;Central Processing Unit&rsquo;. This little chip does all the work. It can do math, and move numbers around.</p>
+</li>
+<li>
+<p>Memory. Also called RAM, which stands for Random Access Memory. You can think of this is as the computer&rsquo;s &lsquo;short-term&rsquo; memory. Everything the computer needs while it&rsquo;s running is here.</p>
+</li>
+<li>
+<p>Storage. We also call this the <em>disk</em>. When the computer needs to store something long-term, it gets put here.</p>
+</li>
+</ol>
+<p>Notice that I said &lsquo;computer&rsquo;, not &lsquo;usable computer&rsquo;. Your laptop or phone have screens, speakers, input devices. All of this stuff is extra, we need it to use the computer, but the computer doesn&rsquo;t need it to compute.</p>
+<h1 id="the-cpu">The CPU</h1>
+<p>The CPU is the computer&rsquo;s brain, more or less. It does all the actual work</p>
+<h1 id="what-is-code-really">What is Code, Really?</h1>
+<p><em>Send all comments to <a href="mailto:hatbox_lyric@protonmail.com">hatbox_lyric@protonmail.com</a></em></p>
+
+		</section>
+
+		<div class="post-tags">
+			
+			
+			<nav class="nav tags">
+				<ul class="tags">
+					
+					<li><a href="/tags/programming">programming</a></li>
+					
+					<li><a href="/tags/assembly">assembly</a></li>
+					
+					<li><a href="/tags/c">C</a></li>
+					
+				</ul>
+			</nav>
+			
+			
+		</div>
+	</article>
+</main>
+<footer>
+  <div style="display:flex"></div>
+  <div class="footer-info">
+    2022  <a
+      href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>
+  </div>
+</footer>
+
+
+</div>
+    </body>
+</html>
