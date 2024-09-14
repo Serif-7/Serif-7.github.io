@@ -110,24 +110,24 @@ body {
     display: inline-block;
     animation: cursor-blink 1.5s steps(2) infinite;
 }
-/* .site-title { */
-    /* border: 1px solid var(--foreground); */
-    /* word-wrap: break-word; */
-    /* word-break: break-word; */
-    /* padding: 5px; */
-    /* margin-bottom: 20px; */
-    /* position: relative; */
-    /* display: flex; */
-/* } */
+.site-title {
+    border: 1px solid var(--foreground);
+    word-wrap: break-word;
+    word-break: break-word;
+    padding: 5px;
+    margin-bottom: 20px;
+    position: relative;
+    display: flex;
+}
  /* make title look good */
-/* .site-title h1 { */
-    /* margin: 0; */
-    /* font-size: 1.5em; */
-    /* line-height: 1.2; */
-    /* flex-grow: 1; */
-    /* display: inline-flex; /* Change to inline-flex */ */
-    /* align-items: center; /* Align items vertically */ */
-/* } */
+.site-title h1 {
+    margin: 0;
+    font-size: 1.5em;
+    line-height: 1.2;
+    flex-grow: 1;
+    display: inline-flex; /* Change to inline-flex */
+    align-items: center; /* Align items vertically */
+}
 .site-title h1::after {
     content: "";
     width: 0.6em;
