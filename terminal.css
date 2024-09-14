@@ -4,27 +4,29 @@
     --foreground: #E9DCC8;
 }
 html, body {
-    height: 90%;
+    height: 100%;
     width: 100%;
-    margin: 20px;
-    padding: 10px;
-    justify-content: center;
-    display: flex;
+    margin: 0px;
+    padding: 0px;
+    /* justify-content: center; */
+    /* display: flex; */
     font-family: 'Iosevka Web', monospace;
 }
 body {
     background-color: var(--background);
+    color: var(--foreground);
     background-image: 
         linear-gradient(rgba(18, 16, 16, 0.1) 1px, transparent 1px),
         linear-gradient(90deg, rgba(18, 16, 16, 0.1) 1px, transparent 1px);
     background-size: 1px 1px;
-    color: var(--foreground);
-    <!-- margin: 0; -->
-    <!-- padding: 20px; -->
+    /* margin: 0; */
+    /* padding: 20px; */
     display: flex;
-    <!-- justify-content: center; -->
-    align-items: center;
+    justify-content: center;
+    align-items: flex-start;
     min-height: 100vh;
+    box-sizing: border-box;
+    padding: 20px;
 }
 
 @keyframes cursor-blink {
@@ -36,37 +38,21 @@ body {
   }
 }
 
-.title::after {
+.title::after, .content::after, .footer::after {
   content: "";
   width: 10px;
-  height: 15px;
-  background: var(--foreground);
-  display: inline-block;
-  animation: cursor-blink 1.5s steps(2) infinite;
-}
-.content::after {
-  content: "";
-  width: 10px;
-  height: 15px;
-  background: var(--foreground);
-  display: inline-block;
-  animation: cursor-blink 1.5s steps(2) infinite;
-}
-.footer::after {
-  content: "";
-  width: 10px;
-  height: 15px;
+  height: 13px;
   background: var(--foreground);
   display: inline-block;
   animation: cursor-blink 1.5s steps(2) infinite;
 }
 
 .container {
-    width: 90%;
+    width: 100%;
     max-width: 1000px;
-    <!-- padding: 20px; -->
-    background-color: rgba(14, 17, 17, 0.7);
-    <!-- box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); -->
+    padding: 20px;
+    /* background-color: rgba(14, 17, 17, 0.7); */
+    /* box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); */
 }
 .nav {
     display: flex;
@@ -85,19 +71,41 @@ body {
     background-color: var(--foreground);
     color: var(--background);
 }
-.title {
+.title, .content, .footer {
     border: 1px solid var(--foreground);
+    word-wrap: break-word;
+    
+}
+.title {
     padding: 5px;
     margin-bottom: 20px;
 }
 .content {
-    border: 1px solid var(--foreground);
     min-height: 300px;
     margin-bottom: 20px;
     padding: 10px;
     overflow-y: auto;
 }
 .footer {
-    border: 1px solid var(--foreground);
     padding: 5px;
+    gap: 2px;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        padding: 10px;
+    }
+    
+    .nav {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .nav button {
+        width: 100%;
+    }
 }
