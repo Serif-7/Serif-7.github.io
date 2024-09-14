@@ -101,8 +101,8 @@ body {
     }
     
     .nav {
-        flex-direction: column;
-        align-items: stretch;
+        /* flex-direction: column; */
+        /* align-items: stretch; */
     }
     
     .nav button {
