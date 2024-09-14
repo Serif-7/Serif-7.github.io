@@ -2,7 +2,9 @@
 :root {
     --background: #0e1111;
     --foreground: #E9DCC8;
+    --email: "hatbox_lyric@protonmail.com";
 }
+
 html, body {
     height: 100%;
     width: 100%;
@@ -38,15 +40,6 @@ body {
   }
 }
 
-.title::after, .content::after, .footer::after {
-  content: "";
-  width: 10px;
-  height: 13px;
-  background: var(--foreground);
-  display: inline-block;
-  animation: cursor-blink 1.5s steps(2) infinite;
-}
-
 .container {
     width: 100%;
     max-width: 1000px;
@@ -54,6 +47,7 @@ body {
     /* background-color: rgba(14, 17, 17, 0.7); */
     /* box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); */
 }
+
 .nav {
     display: flex;
     justify-content: flex-start;
@@ -74,12 +68,25 @@ body {
 .title, .content, .footer {
     border: 1px solid var(--foreground);
     word-wrap: break-word;
+    word-break: break-word;
     
 }
 .title {
     padding: 5px;
     margin-bottom: 20px;
+    position: relative;
+    display: flex;
 }
+ /* make title look good */
+.title h1 {
+    margin: 0;
+    font-size: 1.5em;
+    line-height: 1.2;
+    flex-grow: 1;
+    display: inline-flex; /* Change to inline-flex */
+    align-items: center; /* Align items vertically */
+}
+
 .content {
     min-height: 300px;
     margin-bottom: 20px;
@@ -89,6 +96,32 @@ body {
 .footer {
     padding: 5px;
     gap: 2px;
+}
+.title::after, .content::after, .footer::after {
+  content: "";
+  /* width: 10px; */
+  /* height: 13px; */
+  width: 0.6em;
+  height: 1.2em;
+  top: 0.1em;
+  margin-left: 0.2em;
+  position: relative;
+  background: var(--foreground);
+  display: inline-block;
+  animation: cursor-blink 1.5s steps(2) infinite;
+}
+.title h1::after {
+    content: "";
+    width: 0.6em;
+    height: 1.2em;
+    background: var(--foreground);
+    display: inline-block;
+    animation: cursor-blink 1.5s steps(2) infinite;
+    margin-left: 0.2em;
+}
+
+.email::before {
+  content: var(--email);
 }
 
 @media (max-width: 600px) {
