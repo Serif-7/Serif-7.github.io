@@ -70,4 +70,3 @@ if __name__ == "__main__":
 
     convert_post_to_html(markdown_file, template_file, output_file)
     print(f"Converted {markdown_file} to {output_file} using template {template_file}")
-    return

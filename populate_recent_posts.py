@@ -9,21 +9,26 @@
 import sys
 import os
 from bs4 import BeautifulSoup
+from datetime import datetime
 
 def populate_recent_posts(index_file, posts_folder):
 
-    with open(index_file, 'w+') as f:
+    with open(index_file, 'r') as f:
         index_soup = BeautifulSoup(f, features='html.parser')
 
-        date_list_html = generate_sorted_date_list(posts_folder)
+    date_list_html = generate_sorted_date_list(posts_folder)
 
-        soup = BeautifulSoup(date_list_html, features='html.parser')
+    soup = BeautifulSoup(date_list_html, features='html.parser')
 
-        recent_posts = index_soup.find('div', {'class': 'recent-posts'})
-        recent_posts.clear()
-        recent_posts.append(soup)
+    recent_posts = index_soup.find('div', {'class': 'recent-posts'})
+    recent_posts.clear()
+    recent_posts.append(soup)
 
-        f.write(str(soup))
+    # print(index_soup.prettify())
+    # f.write(str(index_soup))
+    with open(index_file, 'w') as f:
+        f.write(str(index_soup))
+    
     return
 
 def generate_sorted_date_list(directory):
@@ -45,7 +50,11 @@ def generate_sorted_date_list(directory):
                     date_str = date_div.string.strip()
                     if date_str.startswith("Date: "):
                         date_str = date_str[6:]  # Remove "Date: " prefix
-                    dates.append((date_str, filename, soup.head.title))
+                    dates.append((date_str, filename, soup.head.title.string))
+
+    if  not dates:
+        print("No posts in given folder.")
+        sys.exit(1)
     
     # Sort the dates
     sorted_dates = sorted(dates, key=lambda x: datetime.strptime(x[0], "%a %b %d %Y"), reverse=True)
@@ -55,7 +64,7 @@ def generate_sorted_date_list(directory):
     # only get first 5 posts
     for date, filename, title in sorted_dates[0:5]:
         formatted_date = datetime.strptime(date, "%a %b %d %Y").strftime("%B %d, %Y")
-        html_list += f"  <li><a href='/posts/{filename}'>{title}: {formatted_date}</a></li>\n"
+        html_list += f"  <li><a href='posts/{filename}'>{title}: {formatted_date}</a></li>\n"
     html_list += "</ol>"
     
     return html_list
