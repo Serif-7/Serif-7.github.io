@@ -8,7 +8,6 @@
 # ///
 
 import sys
-import re
 import pypandoc
 from bs4 import BeautifulSoup
 

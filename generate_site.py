@@ -24,4 +24,4 @@ def generate_site():
 
 if __name__ == "__main__":
     generate_site()
-    print(f"Generated site.")
+    print("Generated site.")
