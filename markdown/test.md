@@ -2,7 +2,7 @@
 
 Date: Sat Sep 14 2024
 
-Tags: @film, @photography
+Tags: film, photography
 
 And the dreams that lie hidden in the shadow of the wind.
 

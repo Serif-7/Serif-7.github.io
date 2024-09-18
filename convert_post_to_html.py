@@ -27,19 +27,32 @@ def convert_post_to_html(markdown_file, template_file, output_file):
     md_soup = BeautifulSoup(content_html, features='html.parser')
     tsoup = BeautifulSoup(template_html, features='html.parser')
     
-    ### Replace placeholders in the template
+    ### Extract Metadata
 
     # Extract first tag, the title, and then the date
-    # this removes both tags from the soup object
+    # this removes all three tags from the soup object
     title = md_soup.find().extract().string
     date = md_soup.find().extract().string
+    tags = md_soup.find().extract().string
+    tags = tags.split()
+
+    # expected formats:
+    # title is at top of document, ex '# Title'
+    # Date is second, ex 'Date: Sep 14 2024'
+    # Tags are third, ex 'Tags: film, photography'
+    
+    metadata = {
+        "title": title,
+        "date": date,
+        "tags": tags[1:]
+    }
+
+    ### Insert content into template
     
     tsoup.head.title = title
 
     # replace site-title contents with title
     tsoup.find('div', {'class': 'site-title'}).contents[0].string = f'> {title}'
-
-    # insert content
 
     # reinsert the date as an isolated tag for easy lookup later
     date_tag = md_soup.new_tag('div')
@@ -55,7 +68,8 @@ def convert_post_to_html(markdown_file, template_file, output_file):
     with open(output_file, 'w') as f:
         f.write(str(tsoup))
 
-    return
+    print(metadata)
+    return metadata
 
 
 if __name__ == "__main__":

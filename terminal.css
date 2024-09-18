@@ -1,6 +1,6 @@
 
 :root {
-    --background: #0e1111;
+    --background: #0E1111;
     --foreground: #E9DCC8;
     --email: "hatbox_lyric@protonmail.com";
 }
@@ -33,6 +33,12 @@ body {
 
 a {
     color: var(--foreground)
+}
+
+/* make links highlight on hover */
+a:hover {
+    background-color: var(--foreground);
+    color: var(--background);
 }
 
 @keyframes cursor-blink {
@@ -156,6 +162,22 @@ a {
     animation: cursor-blink 1.5s steps(2) infinite;
     margin-left: 0.2em;
 }
+
+/* typing animation */
+
+/* .site-title h1, */
+/* .title h1, */
+/* .content, */
+/* .footer { */
+  /* overflow: hidden; */
+  /* border-right: .15em solid var(--foreground); */
+  /* white-space: nowrap; */
+  /* margin: 0 auto; */
+  /* letter-spacing: .15em; */
+  /* animation: */ 
+    /* typing 3.5s steps(40, end), */
+    /* blink-caret .75s step-end infinite; */
+/* } */
 
 .email::before {
   content: var(--email);
