@@ -33,16 +33,21 @@ def convert_post_to_html(markdown_file, template_file, output_file):
     # this removes all three tags from the soup object
     title = md_soup.find().extract().string
     date = md_soup.find().extract().string
+    date = date.split()[1:]
+    date = date[0] + ' ' + date[1] + ' ' + date[2] +' ' + date[3]
     tags = md_soup.find().extract().string
     tags = tags.split()
+    tags = list(map(lambda t: t[0:-1] if t[-1] == ',' else t, tags))
 
     # expected formats:
     # title is at top of document, ex '# Title'
     # Date is second, ex 'Date: Sep 14 2024'
     # Tags are third, ex 'Tags: film, photography'
+
     
     metadata = {
         "title": title,
+        "filename": output_file,
         "date": date,
         "tags": tags[1:]
     }

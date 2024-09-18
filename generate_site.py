@@ -33,6 +33,8 @@ def generate_site():
 
     # convert all files in /markdown to html, extract metadata, and place in /posts
     for file in os.listdir('markdown'):
+        if file == 'template.md':
+            continue
         if file.endswith('.md'):
             postname = 'posts/' + file[0:-3] + '.html'
             
@@ -42,14 +44,12 @@ def generate_site():
     with open('search.html', 'r') as f:
         soup = BeautifulSoup(f, features='html.parser')
 
-    print(soup)
-    # posts = soup.find('post-data')
-    # print(posts)
-    # posts.string = json.dumps(metadata)
-    # with open('search.html', 'w') as f:
-    #     f.write(soup.prettify())
+    posts = soup.head.find('meta', {'id': 'post-data'})
+    posts['data'] = json.dumps(metadata)
+    with open('search.html', 'w') as f:
+        f.write(soup.prettify())
     
-    populate_recent_posts('index.html', 'posts')
+    populate_recent_posts('index.html', metadata)
     return
 
 if __name__ == "__main__":

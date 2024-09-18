@@ -11,12 +11,12 @@ import os
 from bs4 import BeautifulSoup
 from datetime import datetime
 
-def populate_recent_posts(index_file, posts_folder):
+def populate_recent_posts(index_file, post_data):
 
     with open(index_file, 'r') as f:
         index_soup = BeautifulSoup(f, features='html.parser')
 
-    date_list_html = generate_sorted_date_list(posts_folder)
+    date_list_html = generate_sorted_date_list(post_data)
 
     soup = BeautifulSoup(date_list_html, features='html.parser')
 
@@ -31,29 +31,31 @@ def populate_recent_posts(index_file, posts_folder):
     
     return
 
-def generate_sorted_date_list(directory):
+def generate_sorted_date_list(post_data):
     dates = []
+    for post in post_data:
+        dates.append((post['date'], post['filename'], post['title']))
     
     # Scan the directory for HTML files
-    for filename in os.listdir(directory):
-        if filename.endswith('.html'):
-            file_path = os.path.join(directory, filename)
+    # for filename in os.listdir(directory):
+    #     if filename.endswith('.html'):
+    #         file_path = os.path.join(directory, filename)
             
-            with open(file_path, 'r', encoding='utf-8') as file:
-                soup = BeautifulSoup(file, 'html.parser')
+    #         with open(file_path, 'r', encoding='utf-8') as file:
+    #             soup = BeautifulSoup(file, 'html.parser')
                 
-                # Find the date div
-                date_div = soup.find('div', {'class': 'date'})
+    #             # Find the date div
+    #             date_div = soup.find('div', {'class': 'date'})
                 
-                if date_div and date_div.string:
-                    # Extract the date string and append to the list
-                    date_str = date_div.string.strip()
-                    if date_str.startswith("Date: "):
-                        date_str = date_str[6:]  # Remove "Date: " prefix
-                    dates.append((date_str, filename, soup.head.title.string))
+    #             if date_div and date_div.string:
+    #                 # Extract the date string and append to the list
+    #                 date_str = date_div.string.strip()
+    #                 if date_str.startswith("Date: "):
+    #                     date_str = date_str[6:]  # Remove "Date: " prefix
+    #                 dates.append((date_str, filename, soup.head.title.string))
 
     if  not dates:
-        print("No posts in given folder.")
+        print("No posts in given data.")
         sys.exit(1)
     
     # Sort the dates

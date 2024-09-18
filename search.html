@@ -1,30 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Posts</title>
-    <link href="https://pvinis.github.io/iosevka-webfont/3.4.1/iosevka.css" rel="stylesheet" />
-    <link rel="stylesheet" href="terminal.css">
-</head>
-<body>
-    <div class="container">
-        <div class="nav">
-            <!-- <button href="../index.html">/home</button> -->
-            <!-- <button> <a href="/index">/index</a></button> -->
-            <!-- <button> <a href="search">/search</a></button> -->
-            <!-- <button> <a href="../index.html">/home</a></button> -->
-            <a href="list.html">/index</a>
-            <a href="index.html">/home</a>
-        </div>
-        <!-- <div class="title">&lt;title&gt;</div> -->
-        <div class="site-title"><h1> > Search Posts... </h1></div>
-            <input type="text" id="search-bar" placeholder="Search for posts...">
-            <div id="tag-buttons"></div>
-            <div id="search-results"></div>
-            <div hidden id="post-data"></div>
-            <script>
-            // post data will be written here on site generation
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Search Posts
+  </title>
+  <link href="https://pvinis.github.io/iosevka-webfont/3.4.1/iosevka.css" rel="stylesheet"/>
+  <link href="terminal.css" rel="stylesheet"/>
+  <meta data='[{"title": "A Review of Ilford Ilfocolor", "filename": "posts/test.html", "date": "Sat Sep 14 2024", "tags": ["film", "photography"]}]' id="post-data"/>
+ </head>
+ <body>
+  <div class="container">
+   <div class="nav">
+    <!-- <button href="../index.html">/home</button> -->
+    <!-- <button> <a href="/index">/index</a></button> -->
+    <!-- <button> <a href="search">/search</a></button> -->
+    <!-- <button> <a href="../index.html">/home</a></button> -->
+    <a href="list.html">
+     /index
+    </a>
+    <a href="index.html">
+     /home
+    </a>
+   </div>
+   <!-- <div class="title">&lt;title&gt;</div> -->
+   <div class="site-title">
+    <h1>
+     &gt; Search Posts...
+    </h1>
+   </div>
+   <input id="search-bar" placeholder="Search for posts..." type="text"/>
+   <div id="tag-buttons">
+   </div>
+   <div id="search-results">
+   </div>
+   <script>
+    // post data will be written here on site generation
                   <!-- const posts = [ -->
                 <!-- { title: "Introduction to HTML", tags: ["html", "web development"] }, -->
                 <!-- { title: "CSS Flexbox Guide", tags: ["css", "web development"] }, -->
@@ -32,7 +44,9 @@
                 <!-- { title: "Python for Beginners", tags: ["python", "programming"] }, -->
                 <!-- { title: "React vs Vue", tags: ["javascript", "frameworks", "web development"] } -->
                     <!-- ]; -->
-                let posts = document.getElementById('post-data').textContent;
+                let posts = JSON.parse(document.getElementById('post-data').attributes.data.textContent);
+                <!-- console.log(posts) -->
+                <!-- console.log(typeof posts) -->
 
                         
                 <!-- async function loadPosts() { -->
@@ -90,7 +104,8 @@
                         const postElement = document.createElement('div');
                         postElement.classList.add('post');
                         postElement.innerHTML = `
-                            <h2>${post.title}</h2>
+                            <h2><a href=posts/${post.filename}>${post.title}</a></h2>
+                            <div class="tags">Date: ${post.date}</div>
                             <div class="tags">Tags: ${post.tags.join(', ')}</div>
                         `;
                         searchResults.appendChild(postElement);
@@ -102,8 +117,12 @@
 
                 // Initial display of all posts
                 updateResults();
-            </script>
-        <div class="footer">> Send all comments to <span class="email"></span></div>
-    </div>
-</body>
+   </script>
+   <div class="footer">
+    &gt; Send all comments to
+    <span class="email">
+    </span>
+   </div>
+  </div>
+ </body>
 </html>
