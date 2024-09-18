@@ -27,7 +27,7 @@ def populate_recent_posts(index_file, posts_folder):
     # print(index_soup.prettify())
     # f.write(str(index_soup))
     with open(index_file, 'w') as f:
-        f.write(str(index_soup))
+        f.write(str(index_soup.prettify()))
     
     return
 

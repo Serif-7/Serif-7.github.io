@@ -22,6 +22,87 @@
             <input type="text" id="search-bar" placeholder="Search for posts...">
             <div id="tag-buttons"></div>
             <div id="search-results"></div>
+            <div hidden id="post-data"></div>
+            <script>
+            // post data will be written here on site generation
+                  <!-- const posts = [ -->
+                <!-- { title: "Introduction to HTML", tags: ["html", "web development"] }, -->
+                <!-- { title: "CSS Flexbox Guide", tags: ["css", "web development"] }, -->
+                <!-- { title: "JavaScript Basics", tags: ["javascript", "programming"] }, -->
+                <!-- { title: "Python for Beginners", tags: ["python", "programming"] }, -->
+                <!-- { title: "React vs Vue", tags: ["javascript", "frameworks", "web development"] } -->
+                    <!-- ]; -->
+                let posts = document.getElementById('post-data').textContent;
+
+                        
+                <!-- async function loadPosts() { -->
+                <!-- try { -->
+                    <!-- const response = await fetch('posts.json'); -->
+                    <!-- if (!response.ok) { -->
+                        <!-- throw new Error(`HTTP error! status: ${response.status}`); -->
+                    <!-- } -->
+                    <!-- posts = await response.json(); -->
+                    <!-- initializeSearch(); -->
+                        <!-- } --> 
+                <!-- catch (error) { -->
+                    <!-- console.error("Could not load posts:", error); -->
+                        <!-- } -->
+                    <!-- } -->
+
+                // Get DOM elements
+                const searchBar = document.getElementById('search-bar');
+                const tagButtons = document.getElementById('tag-buttons');
+                const searchResults = document.getElementById('search-results');
+
+                // Get unique tags from all posts
+                const allTags = [...new Set(posts.flatMap(post => post.tags))];
+
+                // Create tag buttons
+                allTags.forEach(tag => {
+                    const button = document.createElement('button');
+                    button.textContent = tag;
+                    button.classList.add('tag-button');
+                    button.addEventListener('click', () => {
+                        button.classList.toggle('active');
+                        updateResults();
+                    });
+                    tagButtons.appendChild(button);
+                });
+
+                // Update search results based on search input and active tags
+                function updateResults() {
+                    const searchTerm = searchBar.value.toLowerCase();
+                    const activeTags = Array.from(document.querySelectorAll('.tag-button.active')).map(btn => btn.textContent);
+
+                    const filteredPosts = posts.filter(post => {
+                        const titleMatch = post.title.toLowerCase().includes(searchTerm);
+                        const tagMatch = activeTags.length === 0 || activeTags.every(tag => post.tags.includes(tag));
+                        return titleMatch && tagMatch;
+                    });
+
+                    displayResults(filteredPosts);
+                }
+
+                // Display filtered posts
+                function displayResults(filteredPosts) {
+                    searchResults.innerHTML = '';
+                    filteredPosts.forEach(post => {
+                        const postElement = document.createElement('div');
+                        postElement.classList.add('post');
+                        postElement.innerHTML = `
+                            <h2>${post.title}</h2>
+                            <div class="tags">Tags: ${post.tags.join(', ')}</div>
+                        `;
+                        searchResults.appendChild(postElement);
+                    });
+                }
+
+                // Add event listener to search bar
+                searchBar.addEventListener('input', updateResults);
+
+                // Initial display of all posts
+                updateResults();
+            </script>
         <div class="footer">> Send all comments to <span class="email"></span></div>
     </div>
 </body>
