@@ -63,6 +63,7 @@ def populate_recent_posts(index_file, post_data):
     soup = BeautifulSoup(date_list_html, features='html.parser')
 
     recent_posts = index_soup.find('div', {'class': 'recent-posts'})
+    assert(recent_posts is not None)
     recent_posts.clear()
     recent_posts.append(soup)
 
@@ -76,7 +77,7 @@ def populate_recent_posts(index_file, post_data):
     return
 
 
-def generate_site():
+def generate_site() -> None:
 
     metadata = []
 
@@ -94,6 +95,7 @@ def generate_site():
         soup = BeautifulSoup(f, features='html.parser')
 
     posts = soup.head.find('meta', {'id': 'post-data'})
+    assert(posts is not None)
     posts['data'] = json.dumps(metadata)
     with open('search.html', 'w') as f:
         f.write(soup.prettify())
