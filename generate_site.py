@@ -6,26 +6,75 @@
 #     "pypandoc",
 # ]
 # ///
-from populate_recent_posts import populate_recent_posts
 from convert_post_to_html import convert_post_to_html as convert_post
 import os
+import sys
+from datetime import datetime
 import json
 from bs4 import BeautifulSoup
 
-# def populate_search_results_and_buttons(metadata_list):
-#     with open('search.html', 'r') as f:
-#         soup = BeautifulSoup(f)
+def generate_sorted_date_list(post_data):
+    dates = []
+    for post in post_data:
+        dates.append((post['date'], post['filename'], post['title']))
+    
+    # Scan the directory for HTML files
+    # for filename in os.listdir(directory):
+    #     if filename.endswith('.html'):
+    #         file_path = os.path.join(directory, filename)
+            
+    #         with open(file_path, 'r', encoding='utf-8') as file:
+    #             soup = BeautifulSoup(file, 'html.parser')
+                
+    #             # Find the date div
+    #             date_div = soup.find('div', {'class': 'date'})
+                
+    #             if date_div and date_div.string:
+    #                 # Extract the date string and append to the list
+    #                 date_str = date_div.string.strip()
+    #                 if date_str.startswith("Date: "):
+    #                     date_str = date_str[6:]  # Remove "Date: " prefix
+    #                 dates.append((date_str, filename, soup.head.title.string))
 
-#     # get unique set of tags
-#     tags = set()
-#     for post in metadata_list:
-#         for tag in post['tags']:
-#             tags.add(tag)
+    if not dates:
+        print("ERROR: No posts in given data. Exiting.")
+        sys.exit(1)
+    
+    # Sort the dates
+    sorted_dates = sorted(dates, key=lambda x: datetime.strptime(x[0], "%a %b %d %Y"), reverse=True)
+    
+    # Generate the HTML ordered list
+    html_list = "<ol>\n"
+    # only get first 5 posts
+    for date, filename, title in sorted_dates[0:5]:
+        formatted_date = datetime.strptime(date, "%a %b %d %Y").strftime("%B %d, %Y")
+        html_list += f"  <li><a href='{filename}'>{title}: {formatted_date}</a></li>\n"
+    html_list += "</ol>"
+    
+    return html_list
 
-#     # add tag buttons
-#     for tag in tags:
-#         new_button = soup.new_tag()
-#         new_button.string = tag
+def populate_recent_posts(index_file, post_data):
+
+    with open(index_file, 'r') as f:
+        index_soup = BeautifulSoup(f, features='html.parser')
+
+    date_list_html = generate_sorted_date_list(post_data)
+
+    soup = BeautifulSoup(date_list_html, features='html.parser')
+
+    recent_posts = index_soup.find('div', {'class': 'recent-posts'})
+    recent_posts.clear()
+    recent_posts.append(soup)
+
+    # print(index_soup.prettify())
+    # f.write(str(index_soup))
+    with open(index_file, 'w') as f:
+        f.write(str(index_soup.prettify()))
+
+    print(f"Populated recent posts of {index_file}")
+    
+    return
+
 
 def generate_site():
 
@@ -33,14 +82,14 @@ def generate_site():
 
     # convert all files in /markdown to html, extract metadata, and place in /posts
     for file in os.listdir('markdown'):
-        if file == 'template.md':
-            continue
+        # if file == 'template.md':
+        #     continue
         if file.endswith('.md'):
             postname = 'posts/' + file[0:-3] + '.html'
             
             metadata.append(convert_post('markdown/' + file, 'template.html', postname))
 
-    # put post data in search.html
+    # put metadata in search.html
     with open('search.html', 'r') as f:
         soup = BeautifulSoup(f, features='html.parser')
 
@@ -53,5 +102,8 @@ def generate_site():
     return
 
 if __name__ == "__main__":
+    if not os.listdir('markdown'):
+        print("ERROR: No files in ./markdown. Exiting.")
+        sys.exit(1)
     generate_site()
     print("Generated site.")
