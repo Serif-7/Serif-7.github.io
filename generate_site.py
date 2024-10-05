@@ -4,6 +4,7 @@
 # dependencies = [
 #     "bs4",
 #     "pypandoc",
+#     "pyyaml",
 # ]
 # ///
 from convert_post_to_html import convert_post_to_html as convert_post
@@ -12,6 +13,8 @@ import sys
 from datetime import datetime
 import json
 from bs4 import BeautifulSoup
+
+date_format = "%B %d, %Y" # October 4, 2024
 
 def generate_sorted_date_list(post_data):
     dates = []
@@ -41,13 +44,14 @@ def generate_sorted_date_list(post_data):
         sys.exit(1)
     
     # Sort the dates
-    sorted_dates = sorted(dates, key=lambda x: datetime.strptime(x[0], "%a %b %d %Y"), reverse=True)
+    # date format: 
+    sorted_dates = sorted(dates, key=lambda x: datetime.strptime(x[0], date_format), reverse=True)
     
     # Generate the HTML ordered list
     html_list = "<ol>\n"
     # only get first 5 posts
     for date, filename, title in sorted_dates[0:5]:
-        formatted_date = datetime.strptime(date, "%a %b %d %Y").strftime("%B %d, %Y")
+        formatted_date = datetime.strptime(date, date_format).strftime("%B %d, %Y")
         html_list += f"  <li><a href='{filename}'>{title}: {formatted_date}</a></li>\n"
     html_list += "</ol>"
     
@@ -83,12 +87,11 @@ def generate_site() -> None:
 
     # convert all files in /markdown to html, extract metadata, and place in /posts
     for file in os.listdir('markdown'):
-        # if file == 'template.md':
-        #     continue
+        if file == 'template.md':
+            continue
         if file.endswith('.md'):
-            postname = 'posts/' + file[0:-3] + '.html'
             
-            metadata.append(convert_post('markdown/' + file, 'template.html', postname))
+            metadata.append(convert_post('markdown/' + file, 'template.html'))
 
     # put metadata in search.html
     with open('search.html', 'r') as f:
@@ -97,6 +100,8 @@ def generate_site() -> None:
     posts = soup.head.find('meta', {'id': 'post-data'})
     assert(posts is not None)
     posts['data'] = json.dumps(metadata)
+
+    # replace search.html with new version
     with open('search.html', 'w') as f:
         f.write(soup.prettify())
     
