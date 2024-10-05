@@ -14,7 +14,9 @@ from datetime import datetime
 import json
 from bs4 import BeautifulSoup
 
-date_format = "%B %d, %Y" # October 4, 2024
+date_format = "%B %d, %Y" # ex. October 4, 2024
+recent_posts_limit = 5 # number of recent posts to show on home page
+email = "hatbox_lyric@protonmail.com" # inserted into template during site generation
 
 def generate_sorted_date_list(post_data):
     dates = []
@@ -50,9 +52,9 @@ def generate_sorted_date_list(post_data):
     # Generate the HTML ordered list
     html_list = "<ol>\n"
     # only get first 5 posts
-    for date, filename, title in sorted_dates[0:5]:
-        formatted_date = datetime.strptime(date, date_format).strftime("%B %d, %Y")
-        html_list += f"  <li><a href='{filename}'>{title}: {formatted_date}</a></li>\n"
+    for date, filename, title in sorted_dates[0:recent_posts_limit]:
+        # formatted_date = datetime.strptime(date, date_format).strftime("%B %d, %Y")
+        html_list += f"  <li><a href='{filename}'>{title}: {date}</a></li>\n"
     html_list += "</ol>"
     
     return html_list
@@ -91,7 +93,7 @@ def generate_site() -> None:
             continue
         if file.endswith('.md'):
             
-            metadata.append(convert_post('markdown/' + file, 'template.html'))
+            metadata.append(convert_post('markdown/' + file, 'post_template.html'))
 
     # put metadata in search.html
     with open('search.html', 'r') as f:

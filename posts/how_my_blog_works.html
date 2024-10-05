@@ -21,26 +21,32 @@
 </div>
 <!-- <div class="title">&lt;title&gt;</div> -->
 <div class="site-title"><h1>&gt; How My Blog Works</h1></div>
-<div class="content"><div class="date">October 4, 2024</div><p>Having a blog is somewhat expected of career seeking techies now.
+<div class="content"><div class="date">October 5, 2024</div><div class="updated">Updated: Never</div><p>Having a blog is somewhat expected of career seeking techies now.
 Wasn’t always this way. It used to be, and still is, something people
-did for fun, to show off their work and their website skills; As a way
-of contributing to the public knowledge. I used to have a Hugo blog, but
-didn’t feel motivated to work on it. Felt very cookie cutter. I wrote
-one post about Morrowind and that was it. I didn’t care to learn what
-shortcodes were or how the templating engine worked, I just wanted my
-posts online.</p>
+did for fun, to show off their work and their website skills; They did
+it as a way of contributing to the public knowledge. I used to have a
+Hugo blog, but didn’t feel motivated to work on it. Felt very cookie
+cutter. I wrote one post about Morrowind and that was it. I didn’t care
+to learn what shortcodes were or how the templating engine worked, I
+just wanted my posts online.</p>
 <p>Recently I hacked together my own static site generator. I have made
 it according to my aesthetics and design philosophy, which is as simple
 and easily accessible as possible, with good documentation.</p>
 <p>Follow along: https://github.com/Serif-7/Serif-7.github.io</p>
-<p>It is written in python, with exactly two dependencies:
+<p>It is written in python, with exactly three dependencies so far:
 <code>pypandoc</code>, which is just a binding to Pandoc and lets me
-convert markdown to HTML, and <code>BeautifulSoup</code>, which lets me
-manipulate the converted HTML. The site layout is as follows:</p>
-<p><code>index.html</code>: the homepage, with a recent posts list.
-<code>search.html</code>: the search function. At the time of writing it
-allows for searching by name and sorting by tag. Eventually I will get
-around to sorting by date as well. <code>posts/</code>: Obvious.</p>
+convert markdown to HTML, <code>BeautifulSoup</code>, which lets me
+manipulate the converted HTML, and <code>pyYAML</code>, which I use to
+extract metadata from Obsidian markdown. The site layout is as
+follows:</p>
+<ul>
+<li><code>index.html</code>: the homepage, with a recent posts
+list.</li>
+<li><code>search.html</code>: the search function. At the time of
+writing it allows for searching by name and sorting by tag. Eventually I
+will get around to sorting by date as well.</li>
+<li><code>posts/</code>: Obvious.</li>
+</ul>
 <p>That’s it. Most people don’t spend much time on a stranger’s blog – I
 know I certainly don’t – so why make it complicated?</p>
 <p>Two python scripts perform the site generation:

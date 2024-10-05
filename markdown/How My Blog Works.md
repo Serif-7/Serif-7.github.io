@@ -1,19 +1,20 @@
 ---
 tags:
   - technical
-published: October 4, 2024
+published: October 5, 2024
+updated: Never
 ---
-Having a blog is somewhat expected of career seeking techies now. Wasn't always this way. It used to be, and still is, something people did for fun, to show off their work and their website skills; As a way of contributing to the public knowledge. I used to have a Hugo blog, but didn't feel motivated to work on it. Felt very cookie cutter. I wrote one post about Morrowind and that was it. I didn't care to learn what shortcodes were or how the templating engine worked, I just wanted my posts online.
+Having a blog is somewhat expected of career seeking techies now. Wasn't always this way. It used to be, and still is, something people did for fun, to show off their work and their website skills; They did it as a way of contributing to the public knowledge. I used to have a Hugo blog, but didn't feel motivated to work on it. Felt very cookie cutter. I wrote one post about Morrowind and that was it. I didn't care to learn what shortcodes were or how the templating engine worked, I just wanted my posts online.
 
 Recently I hacked together my own static site generator. I have made it according to my aesthetics and design philosophy, which is as simple and easily accessible as possible, with good documentation.
 
 Follow along: https://github.com/Serif-7/Serif-7.github.io
 
-It is written in python, with exactly two dependencies: `pypandoc`, which is just a binding to Pandoc and lets me convert markdown to HTML, and `BeautifulSoup`, which lets me manipulate the converted HTML. The site layout is as follows:
+It is written in python, with exactly three dependencies so far: `pypandoc`, which is just a binding to Pandoc and lets me convert markdown to HTML, `BeautifulSoup`, which lets me manipulate the converted HTML, and `pyYAML`, which I use to extract metadata from Obsidian markdown. The site layout is as follows:
 
-`index.html`: the homepage, with a recent posts list.
-`search.html`: the search function. At the time of writing it allows for searching by name and sorting by tag. Eventually I will get around to sorting by date as well.
-`posts/`: Obvious.
+* `index.html`: the homepage, with a recent posts list.
+* `search.html`: the search function. At the time of writing it allows for searching by name and sorting by tag. Eventually I will get around to sorting by date as well.
+* `posts/`: Obvious.
 
 That's it. Most people don't spend much time on a stranger's blog -- I know I certainly don't -- so why make it complicated?
 

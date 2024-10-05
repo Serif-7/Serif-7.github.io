@@ -1,0 +1,7 @@
+* add a /pdfs folder and pdfs.html page listing each one with some info
+* add /photos folder and photos.html as a gallery
+* fix syntax highlighting
+* can't select email footer
+* pandoc doesn't convert links to <a> tags
+* add background noise effect to CSS
+* add tags under date on post page

@@ -28,7 +28,7 @@ def extract_metadata(markdown):
     # Extract the tags
     metadata['tags'] = front_matter_data.get('tags', [])
     metadata['date'] = front_matter_data.get('published', [])
-    
+    metadata['updated'] = front_matter_data.get('updated', [])    
     return metadata
     
     
@@ -87,7 +87,15 @@ def convert_post_to_html(markdown_file, template_file):
     # replace site-title contents with title
     tsoup.find('div', {'class': 'site-title'}).contents[0].string = f'> {metadata["title"]}'
 
+    # insert 'updated' tag
+    # TODO: make `updated` a tag in the html itself and just find it
+    updated_tag = md_soup.new_tag('div')
+    updated_tag['class'] = 'updated'
+    updated_tag.string = "Updated: " + metadata["updated"]
+    md_soup.insert(0, updated_tag)
+    
     # reinsert the date as an isolated tag for easy lookup later
+    # TODO: metadata is handled better now so do the same as for `updated`
     date_tag = md_soup.new_tag('div')
     date_tag['class'] = 'date'
     date_tag.string = metadata["date"]
