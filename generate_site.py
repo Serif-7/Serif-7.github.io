@@ -18,6 +18,27 @@ date_format = "%B %d, %Y" # ex. October 4, 2024
 recent_posts_limit = 5 # number of recent posts to show on home page
 email = "hatbox_lyric@protonmail.com" # inserted into template during site generation
 
+def create_pdf_list():
+    html_list = "<ol>\n"
+    for file in os.listdir("pdfs"):
+        # formatted_date = datetime.strptime(date, date_format).strftime("%B %d, %Y")
+        filename = "pdfs/" + file
+        # can click link to download
+        html_list += f"  <li><a href='{filename}' download>{file}</a></li>\n"
+    html_list += "</ol>"
+
+    list_soup = BeautifulSoup(html_list, features='html.parser')
+
+    with open("pdfs.html", "r") as f:
+        pdf_soup = BeautifulSoup(f, features='html.parser')
+
+    pdf_list = pdf_soup.find('div', {'class': 'pdf-list'})
+    pdf_list.clear()
+    pdf_list.append(list_soup)
+    with open("pdfs.html", "w") as f:
+        f.write(str(pdf_soup.prettify()))
+    
+    
 def generate_sorted_date_list(post_data):
     dates = []
     for post in post_data:
@@ -108,6 +129,7 @@ def generate_site() -> None:
         f.write(soup.prettify())
     
     populate_recent_posts('index.html', metadata)
+    create_pdf_list()
     return
 
 if __name__ == "__main__":

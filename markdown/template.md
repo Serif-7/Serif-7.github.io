@@ -10,6 +10,8 @@ And the dreams that lie hidden in the shadow of the wind.
 2. item two
 3. item three
 
+![Spess Mahreen](../images/spess_mahreen.png)
+
 ~~~rust
 let mut x = 1;
 let a = func(x);
