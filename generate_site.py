@@ -18,6 +18,9 @@ date_format = "%B %d, %Y" # ex. October 4, 2024
 recent_posts_limit = 5 # number of recent posts to show on home page
 email = "hatbox_lyric@protonmail.com" # inserted into template during site generation
 
+def copy_markdown_from_obsidian():
+    pass
+
 def create_pdf_list():
     html_list = "<ol>\n"
     for file in os.listdir("pdfs"):
