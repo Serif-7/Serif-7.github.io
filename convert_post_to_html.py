@@ -106,6 +106,16 @@ def convert_post_to_html(markdown_file, template_file):
     updated_tag['class'] = 'updated'
     updated_tag.string = "Updated: " + metadata["updated"]
     md_soup.insert(0, updated_tag)
+
+    # insert tags
+    if metadata['tags']:
+        string = "Tags: " + metadata['tags'][0]
+        for tag in metadata['tags'][1:]:
+            string = string + ", " + tag
+        tag_tag = md_soup.new_tag('div')
+        tag_tag['class'] = 'post-tags'
+        tag_tag.string = string
+        md_soup.insert(0, tag_tag)
     
     # reinsert the date as an isolated tag for easy lookup later
     # TODO: metadata is handled better now so do the same as for `updated`

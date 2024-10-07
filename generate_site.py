@@ -34,7 +34,7 @@ def create_pdf_list():
         # formatted_date = datetime.strptime(date, date_format).strftime("%B %d, %Y")
         filename = "pdfs/" + file
         # can click link to download
-        html_list += f"  <li><a href='{filename}' download>{file}</a></li>\n"
+        html_list += f"  <li><a href='{filename}' download>{file}</a><p>Insert File Description here</p></li>\n"
     html_list += "</ol>"
 
     list_soup = BeautifulSoup(html_list, features='html.parser')

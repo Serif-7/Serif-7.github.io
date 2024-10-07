@@ -4,6 +4,6 @@
 - [ ] can't select email footer (replace with static email when namecheap forwarder is confirmed to work)
 - [ ] pandoc doesn't convert links to <a> tags
 - [ ] add background noise effect to CSS
-- [ ] add tags under date on post page
+- [x] add tags under date on post page
 - [ ] order pdfs by date added to list
 - [ ] fix domain
