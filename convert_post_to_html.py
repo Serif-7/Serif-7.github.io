@@ -9,26 +9,39 @@
 # ///
 
 import sys
+import os
 import pypandoc
 from bs4 import BeautifulSoup
 import yaml
 
-def extract_metadata(markdown):
-        # Split the content to get the front matter
+def extract_metadata(markdown_file):
+
+    # check if argument is file
+    if os.path.isfile(markdown_file):
+        with open(markdown_file, 'r') as f:
+            markdown = f.read()
+    else:
+        markdown = markdown_file
+    # Split the content to get the front matter
     front_matter = markdown.split('---', 2)
     if len(front_matter) < 3:
         print("YAML front matter not found. Exiting!")
+        print("File text or filename:")
+        print(markdown_file)
         sys.exit(1)
 
     # Parse the front matter as YAML
     front_matter_data = yaml.safe_load(front_matter[1])
     # print(front_matter_data)
-
     metadata = {}
     # Extract the tags
     metadata['tags'] = front_matter_data.get('tags', [])
-    metadata['date'] = front_matter_data.get('published', [])
-    metadata['updated'] = front_matter_data.get('updated', [])    
+    if 'published' in front_matter_data:
+        metadata['date'] = front_matter_data.get('published', [])
+    if 'date' in front_matter_data:
+        metadata['date'] = front_matter_data.get('date', [])
+    metadata['updated'] = front_matter_data.get('updated', [])
+    metadata['draft'] = front_matter_data.get('draft', [])
     return metadata
     
     

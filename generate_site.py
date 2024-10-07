@@ -7,9 +7,11 @@
 #     "pyyaml",
 # ]
 # ///
-from convert_post_to_html import convert_post_to_html as convert_post
 import os
 import sys
+import shutil
+from convert_post_to_html import convert_post_to_html as convert_post
+from convert_post_to_html import extract_metadata
 from datetime import datetime
 import json
 from bs4 import BeautifulSoup
@@ -18,8 +20,13 @@ date_format = "%B %d, %Y" # ex. October 4, 2024
 recent_posts_limit = 5 # number of recent posts to show on home page
 email = "hatbox_lyric@protonmail.com" # inserted into template during site generation
 
+# copy all non-draft posts into /markdown
 def copy_markdown_from_obsidian():
-    pass
+    posts_folder = os.environ['HOME'] + "/Notes/Writing/Posts"
+    for file in os.listdir(posts_folder):
+        metadata = extract_metadata(posts_folder + "/" + file)
+        if not metadata['draft']:
+            shutil.copy2(posts_folder + "/" + file, "./markdown")        
 
 def create_pdf_list():
     html_list = "<ol>\n"
@@ -109,6 +116,8 @@ def populate_recent_posts(index_file, post_data):
 
 def generate_site() -> None:
 
+    copy_markdown_from_obsidian()
+    
     metadata = []
 
     # convert all files in /markdown to html, extract metadata, and place in /posts
