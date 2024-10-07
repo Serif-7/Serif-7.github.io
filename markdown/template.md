@@ -1,3 +1,11 @@
+---
+tags:
+  - technical
+published: October 5, 2024
+updated: Never
+draft: false
+---
+
 # A Review of Ilford Ilfocolor
 
 Date: Sat Sep 14 2024

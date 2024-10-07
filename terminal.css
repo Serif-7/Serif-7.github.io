@@ -222,6 +222,19 @@ input {
 .email::before {
   content: var(--email);
 }
+/* source code */
+.kw { color: #c678dd; } /* Keyword */
+.op { color: #56b6c2; } /* Operator */
+.dv { color: #d19a66; } /* Decimal Value */
+
+.sourceCode {
+  /* background-color: #1E2326; /* Darker background for code blocks */ */
+  /* border: 1px solid var(--foreground); */
+  /* border-radius: 4px; */
+  /* padding: 1em; */
+  /* margin-bottom: 1em; */
+  /* overflow-x: auto; */
+}
 
 @media (max-width: 600px) {
     body {
