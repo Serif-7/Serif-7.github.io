@@ -18,7 +18,6 @@ from bs4 import BeautifulSoup
 
 date_format = "%B %d, %Y" # ex. October 4, 2024
 recent_posts_limit = 5 # number of recent posts to show on home page
-email = "hatbox_lyric@protonmail.com" # inserted into template during site generation
 
 # copy all non-draft posts into /markdown
 def copy_markdown_from_obsidian():
