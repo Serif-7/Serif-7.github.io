@@ -6,4 +6,5 @@
 - [ ] add background noise effect to CSS
 - [x] add tags under date on post page
 - [ ] order pdfs by date added to list
-- [ ] fix domain
+- [x] fix domain
+- [ ] configure https
