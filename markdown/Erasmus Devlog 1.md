@@ -18,6 +18,7 @@ I've begun work on a Rust x86_64 assembler that I am calling **Erasmus**. I'm do
 4. Getting more comfortable with Rust is a plus.
 
 I started by writing a simple tokenizer. I did several advent of code problems over the summer and I learned that tokenizing is always helpful when processing regular string input. Because this isn't a compiler I thankfully don't need anything complicated; assembly instructions are just mnemonics for machine code, so the basic problem is simple. Complexity will come if I decide to add macro-assembler features later.
+
 Detailed information about how assemblers work is somewhat scarce online. I suppose it's a relatively esoteric activity these days, so that makes sense. Since I'm just working on parsing and encoding at the moment, no domain knowledge is needed. After the initial work is done I will have no choice but to dive into the x86 Developer Manual (a massive tome).
 
 The tokenizer is pretty much complete, and converts an assembly program into a list of tokens of the following type:
