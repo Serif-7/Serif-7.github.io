@@ -17,7 +17,7 @@ I've begun work on a Rust x86_64 assembler that I am calling **Erasmus**. I'm do
 3. I would like to *write* some assembly, and while NASM and other options are mature and well-featured, I think there's room for an easy to use Rust tool. I also like to make my own tools when I can; tools that work the way I think they ought to work and are documented according to my own preferences.
 4. Getting more comfortable with Rust is a plus.
 
-I started by writing a simple tokenizer. I did several advent of code problems over the summer and I learned that tokenizing is always helpful when processing regular string input. Because this isn't a compiler I thankfully don't need anything complicated; assembly instructions are just mnemonics for machine code, so the basic problem is simple. Complexity will come if I decide to add macro-assembler features later.
+I started by writing a simple tokenizer. I did several advent of code problems over the summer and I learned that tokenizing is always helpful when processing regular string input. Because this isn't a compiler I thankfully don't need anything complicated: assembly instructions are just mnemonics for machine code, so the basic problem is simple. Complexity will come if I decide to add macro-assembler features later.
 
 Detailed information about how assemblers work is somewhat scarce online. I suppose it's a relatively esoteric activity these days, so that makes sense. Since I'm just working on parsing and encoding at the moment, no domain knowledge is needed. After the initial work is done I will have no choice but to dive into the x86 Developer Manual (a massive tome).
 
