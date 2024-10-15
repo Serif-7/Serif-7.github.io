@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ends of Lines</title>
+<link href="https://pvinis.github.io/iosevka-webfont/3.4.1/iosevka.css" rel="stylesheet"/>
+<link href="../terminal.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+<div class="nav">
+<!-- <button href="../index.html">/home</button> -->
+<!-- <button> <a href="/index">/index</a></button> -->
+<!-- <button> <a href="search">/search</a></button> -->
+<!-- <button> <a href="../index.html">/home</a></button> -->
+<!-- <a href="../list.html">/index</a> -->
+<a href="../search.html">/search</a>
+<a href="../index.html">/home</a>
+</div>
+<!-- <div class="title">&lt;title&gt;</div> -->
+<div class="site-title"><h1>&gt; Erasmus Devlog 1</h1></div>
+<div class="content"><div class="date">October 15, 2024</div><div class="post-tags">Tags: devlog, assembly, rust</div><div class="updated">Updated: Never</div><p>Commit at time of writing:
+https://github.com/Serif-7/erasmus/tree/54243c956df428727a7939eb763bd3bb282df800</p>
+<p>I’ve begun work on a Rust x86_64 assembler that I am calling
+<strong>Erasmus</strong>. I’m doing this for a few reasons:</p>
+<ol type="1">
+<li>I’m just out of college, not many prospects at the moment for
+technical work, so I may as well knock out a relatively simple
+project.</li>
+<li>I’m interested in malware analysis, and assembly is an important
+skill for that kind of work, and writing an assembler will give me a
+pretty confident knowledge of x86 assembly.</li>
+<li>I will gain knowledge of the inner details of the ELF and PE file
+formats, also quite valuable information.</li>
+<li>I would like to <em>write</em> some assembly, and while NASM and
+other options are mature and well-featured, I think there’s room for an
+easy to use Rust tool. I also like to make my own tools when I can;
+tools that work the way I think they ought to work and are documented
+according to my own preferences.</li>
+<li>Getting more comfortable with Rust is a plus.</li>
+</ol>
+<p>I began by asking Claude, “Help me get started writing an assembler”,
+which I am not ashamed to admit. AI is a tool, and so far it’s just been
+a shortcut around reading a lot of vague information on how exactly
+assemblers work, though after the initial work I will have no choice but
+to dive into the x86 Developer Manual (a massive tome). Claude also
+isn’t really capable of doing all the work for me. It can give me
+obvious ideas, such as writing a proper tokenizer instead of a
+string-splitting approach, and it can answer Rust syntax questions, but
+it can’t understand the code for me, and if I can’t understand it I
+can’t debug it, and Claude isn’t smart enough to debug for me. So my
+learning and understanding isn’t really impeded by using AI, so far at
+least.</p>
+<p>The tokenizer is pretty much complete, and converts an assembly
+program into a list of tokens of the following type:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb1-1"><a aria-hidden="true" href="#cb1-1" tabindex="-1"></a><span class="at">#[</span>derive<span class="at">(</span><span class="bu">Debug</span><span class="op">,</span> <span class="bu">PartialEq</span><span class="at">)]</span></span>
+<span id="cb1-2"><a aria-hidden="true" href="#cb1-2" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">enum</span> Token <span class="op">{</span></span>
+<span id="cb1-3"><a aria-hidden="true" href="#cb1-3" tabindex="-1"></a>    Label(<span class="dt">String</span>)<span class="op">,</span></span>
+<span id="cb1-4"><a aria-hidden="true" href="#cb1-4" tabindex="-1"></a>    Instruction(<span class="dt">String</span>)<span class="op">,</span></span>
+<span id="cb1-5"><a aria-hidden="true" href="#cb1-5" tabindex="-1"></a>    Register(<span class="dt">String</span>)<span class="op">,</span></span>
+<span id="cb1-6"><a aria-hidden="true" href="#cb1-6" tabindex="-1"></a>    Number(<span class="dt">i64</span>)<span class="op">,</span></span>
+<span id="cb1-7"><a aria-hidden="true" href="#cb1-7" tabindex="-1"></a>    <span class="dt">String</span>(<span class="dt">String</span>)<span class="op">,</span></span>
+<span id="cb1-8"><a aria-hidden="true" href="#cb1-8" tabindex="-1"></a>    Comma<span class="op">,</span></span>
+<span id="cb1-9"><a aria-hidden="true" href="#cb1-9" tabindex="-1"></a>    OpenBracket<span class="op">,</span></span>
+<span id="cb1-10"><a aria-hidden="true" href="#cb1-10" tabindex="-1"></a>    CloseBracket<span class="op">,</span></span>
+<span id="cb1-11"><a aria-hidden="true" href="#cb1-11" tabindex="-1"></a>    Plus<span class="op">,</span></span>
+<span id="cb1-12"><a aria-hidden="true" href="#cb1-12" tabindex="-1"></a>    Minus<span class="op">,</span></span>
+<span id="cb1-13"><a aria-hidden="true" href="#cb1-13" tabindex="-1"></a>    Mult<span class="op">,</span></span>
+<span id="cb1-14"><a aria-hidden="true" href="#cb1-14" tabindex="-1"></a>    Identifier(<span class="dt">String</span>)<span class="op">,</span></span>
+<span id="cb1-15"><a aria-hidden="true" href="#cb1-15" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>The assembler struct will operate on lists of these tokens. I’ve
+written some very, very preliminary encoding logic, which looks like
+this:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb2-1"><a aria-hidden="true" href="#cb2-1" tabindex="-1"></a><span class="kw">fn</span> encode_instruction(token<span class="op">:</span> <span class="op">&amp;</span><span class="pp">tokenizer::</span>Token) <span class="op">-&gt;</span> <span class="dt">Option</span><span class="op">&lt;</span><span class="dt">u8</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb2-2"><a aria-hidden="true" href="#cb2-2" tabindex="-1"></a>    <span class="cf">match</span> token <span class="op">{</span></span>
+<span id="cb2-3"><a aria-hidden="true" href="#cb2-3" tabindex="-1"></a>        <span class="pp">tokenizer::Token::</span>Instruction(instr) <span class="op">=&gt;</span> <span class="cf">match</span> instr<span class="op">.</span>as_str() <span class="op">{</span></span>
+<span id="cb2-4"><a aria-hidden="true" href="#cb2-4" tabindex="-1"></a>            <span class="st">"mov"</span> <span class="op">=&gt;</span> <span class="cn">Some</span>(<span class="dv">0x88</span>)<span class="op">,</span></span>
+<span id="cb2-5"><a aria-hidden="true" href="#cb2-5" tabindex="-1"></a>            <span class="st">"add"</span> <span class="op">=&gt;</span> <span class="cn">Some</span>(<span class="dv">0x01</span>)<span class="op">,</span></span>
+<span id="cb2-6"><a aria-hidden="true" href="#cb2-6" tabindex="-1"></a>            <span class="st">"sub"</span> <span class="op">=&gt;</span> <span class="cn">Some</span>(<span class="dv">0x29</span>)<span class="op">,</span></span>
+<span id="cb2-7"><a aria-hidden="true" href="#cb2-7" tabindex="-1"></a>            <span class="st">"push"</span> <span class="op">=&gt;</span> <span class="cn">Some</span>(<span class="dv">0x50</span>)<span class="op">,</span></span>
+<span id="cb2-8"><a aria-hidden="true" href="#cb2-8" tabindex="-1"></a>            <span class="st">"pop"</span> <span class="op">=&gt;</span> <span class="cn">Some</span>(<span class="dv">0x58</span>)<span class="op">,</span></span>
+<span id="cb2-9"><a aria-hidden="true" href="#cb2-9" tabindex="-1"></a>            _ <span class="op">=&gt;</span> <span class="cn">None</span><span class="op">,</span>  <span class="co">// Unknown instruction</span></span>
+<span id="cb2-10"><a aria-hidden="true" href="#cb2-10" tabindex="-1"></a>        <span class="op">},</span></span>
+<span id="cb2-11"><a aria-hidden="true" href="#cb2-11" tabindex="-1"></a>        _ <span class="op">=&gt;</span> <span class="cn">None</span><span class="op">,</span>  <span class="co">// Not an instruction token</span></span>
+<span id="cb2-12"><a aria-hidden="true" href="#cb2-12" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-13"><a aria-hidden="true" href="#cb2-13" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Quite simple, though it probably shouldn’t return an
+<code>Option</code>. If anything <em>but</em> an instruction token is
+going into that function, something is terribly wrong.</p>
+<p>Anyway, there’s not much else to tell in this first post. The code so
+far is only a few files. At a good pace it shouldn’t take very long to
+get it to a working state.</p>
+</div>
+<div class="footer">&gt; Send all comments to <b>serif@endsoflines.com</b></div>
+</div>
+</body>
+</html>

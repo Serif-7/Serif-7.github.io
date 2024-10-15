@@ -7,4 +7,5 @@
 - [x] add tags under date on post page
 - [ ] order pdfs by date added to list
 - [x] fix domain
-- [ ] configure https
+- [ ] change convert_post() to just return HTML, give file placement to generate_site()
+- [ ] Put tags in bold
