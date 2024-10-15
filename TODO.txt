@@ -9,3 +9,6 @@
 - [x] fix domain
 - [ ] change convert_post() to just return HTML, give file placement to generate_site()
 - [ ] Put tags in bold
+- [ ] improve syntax highlighting
+- [ ] increase spacing of text
+- [ ] put box around code block

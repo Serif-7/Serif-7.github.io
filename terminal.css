@@ -28,6 +28,8 @@ body {
     min-height: 100vh;
     box-sizing: border-box;
     padding: 20px;
+    /* line spacing */
+    line-height: 1.4;
 }
 
 a {
@@ -223,8 +225,10 @@ input {
 }
 /* source code */
 .kw { color: #c678dd; } /* Keyword */
+.cf { color: #c678dd; } /* Keyword */
 .op { color: #56b6c2; } /* Operator */
 .dv { color: #d19a66; } /* Decimal Value */
+.st { color: #98BB6C; } /* String */
 
 .sourceCode {
   /* background-color: #1E2326; /* Darker background for code blocks */ */

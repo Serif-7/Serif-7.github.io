@@ -26,12 +26,10 @@ https://github.com/Serif-7/erasmus/tree/54243c956df428727a7939eb763bd3bb282df800
 <p>I’ve begun work on a Rust x86_64 assembler that I am calling
 <strong>Erasmus</strong>. I’m doing this for a few reasons:</p>
 <ol type="1">
-<li>I’m just out of college, not many prospects at the moment for
-technical work, so I may as well knock out a relatively simple
-project.</li>
-<li>I’m interested in malware analysis, and assembly is an important
-skill for that kind of work, and writing an assembler will give me a
-pretty confident knowledge of x86 assembly.</li>
+<li>I’m interested in malware analysis, and reading assembly is an
+important skill for that kind of work. As such, writing an assembler
+seems like an efficient way to acquire a confident knowledge of x86
+assembly.</li>
 <li>I will gain knowledge of the inner details of the ELF and PE file
 formats, also quite valuable information.</li>
 <li>I would like to <em>write</em> some assembly, and while NASM and
@@ -41,18 +39,18 @@ tools that work the way I think they ought to work and are documented
 according to my own preferences.</li>
 <li>Getting more comfortable with Rust is a plus.</li>
 </ol>
-<p>I began by asking Claude, “Help me get started writing an assembler”,
-which I am not ashamed to admit. AI is a tool, and so far it’s just been
-a shortcut around reading a lot of vague information on how exactly
-assemblers work, though after the initial work I will have no choice but
-to dive into the x86 Developer Manual (a massive tome). Claude also
-isn’t really capable of doing all the work for me. It can give me
-obvious ideas, such as writing a proper tokenizer instead of a
-string-splitting approach, and it can answer Rust syntax questions, but
-it can’t understand the code for me, and if I can’t understand it I
-can’t debug it, and Claude isn’t smart enough to debug for me. So my
-learning and understanding isn’t really impeded by using AI, so far at
-least.</p>
+<p>I started by writing a simple tokenizer. I did several advent of code
+problems over the summer and I learned that tokenizing is always helpful
+when processing regular string input. Because this isn’t a compiler I
+thankfully don’t need anything complicated; assembly instructions are
+just mnemonics for machine code, so the basic problem is simple.
+Complexity will come if I decide to add macro-assembler features later.
+Detailed information about how assemblers work is somewhat scarce
+online. I suppose it’s a relatively esoteric activity these days, so
+that makes sense. Since I’m just working on parsing and encoding at the
+moment, no domain knowledge is needed. After the initial work is done I
+will have no choice but to dive into the x86 Developer Manual (a massive
+tome).</p>
 <p>The tokenizer is pretty much complete, and converts an assembly
 program into a list of tokens of the following type:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb1-1"><a aria-hidden="true" href="#cb1-1" tabindex="-1"></a><span class="at">#[</span>derive<span class="at">(</span><span class="bu">Debug</span><span class="op">,</span> <span class="bu">PartialEq</span><span class="at">)]</span></span>
@@ -91,7 +89,10 @@ this:</p>
 going into that function, something is terribly wrong.</p>
 <p>Anyway, there’s not much else to tell in this first post. The code so
 far is only a few files. At a good pace it shouldn’t take very long to
-get it to a working state.</p>
+get it to a working state. My next task is to finish and test the
+encoding logic for the basic instructions like <code>mov</code> and
+<code>add</code>, and as quickly as possible get the program to a point
+where it can output executable files.</p>
 </div>
 <div class="footer">&gt; Send all comments to <b>serif@endsoflines.com</b></div>
 </div>
