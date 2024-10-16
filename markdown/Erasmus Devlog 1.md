@@ -3,6 +3,7 @@ tags:
   - devlog
   - assembly
   - rust
+  - technical
 published: October 15, 2024
 updated: Never
 draft: false

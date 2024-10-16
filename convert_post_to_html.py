@@ -14,7 +14,7 @@ import pypandoc
 from bs4 import BeautifulSoup
 import yaml
 
-def extract_metadata(markdown_file):
+def extract_metadata(markdown_file) -> dict:
 
     # check if argument is file
     if os.path.isfile(markdown_file):
