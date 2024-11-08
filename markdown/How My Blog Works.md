@@ -1,6 +1,6 @@
 ---
 title: How My Blog Works
-published: November 7, 2024
+published: October 5, 2024
 updated: Never
 tags:
   - technical

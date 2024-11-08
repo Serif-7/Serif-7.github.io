@@ -1,6 +1,6 @@
 ---
 title: "Erasmus Devlog #1"
-published: November 7, 2024
+published: October 15, 2024
 updated: Never
 tags: 
 draft: false
