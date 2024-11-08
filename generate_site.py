@@ -14,6 +14,8 @@ from convert_post_to_html import convert_posts_in_folder_to_html, extract_metada
 from datetime import datetime
 import json
 from bs4 import BeautifulSoup
+import pypandoc
+import yaml
 
 date_format = "%B %d, %Y" # ex. October 4, 2024
 recent_posts_limit = 5 # number of recent posts to show on home page
@@ -110,7 +112,6 @@ def populate_recent_posts_list(index_file, post_data):
     print(f"Populated recent posts of {index_file}")
     
     return
-
 
 def populate_search_page(metadata_list):
     # put metadata in search.html

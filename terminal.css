@@ -16,10 +16,11 @@ html, body {
 body {
     background-color: var(--background);
     color: var(--foreground);
-    background-image: 
-        linear-gradient(rgba(18, 16, 16, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(18, 16, 16, 0.1) 1px, transparent 1px);
-    background-size: 1px 1px;
+    /* background-image: */ 
+        /* linear-gradient(rgba(18, 16, 16, 0.1) 1px, transparent 1px), */
+        /* linear-gradient(90deg, rgba(18, 16, 16, 0.1) 1px, transparent 1px); */
+    /* background-image:url("tile.png"); */
+    /* background-size: 1px 1px; */
     /* margin: 0; */
     /* padding: 20px; */
     display: flex;
@@ -28,6 +29,7 @@ body {
     min-height: 100vh;
     box-sizing: border-box;
     padding: 20px;
+    line-height: 1.4; /* line spacing */
 }
 
 a {
@@ -223,8 +225,10 @@ input {
 }
 /* source code */
 .kw { color: #c678dd; } /* Keyword */
+.cf { color: #c678dd; } /* Keyword */
 .op { color: #56b6c2; } /* Operator */
 .dv { color: #d19a66; } /* Decimal Value */
+.st { color: #98BB6C; } /* String */
 
 .sourceCode {
   /* background-color: #1E2326; /* Darker background for code blocks */ */

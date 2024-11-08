@@ -106,7 +106,7 @@ def convert_post_to_html(markdown_file, template_file):
     # metadata = extract_metadata_from_post(markdown_content)
 
     #convert post title to filename, ex. 'markdown/How My Blog Works'.md -> 'posts/how_my_blog_works.html'
-    output_file = metadata["filename"]
+    output_file = "posts/" + metadata["filename"]
     # output_file = output_file.lower()
     # output_file = output_file.replace(' ', '_')
     # output_file += ".html"
