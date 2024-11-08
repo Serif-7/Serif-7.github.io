@@ -10,8 +10,7 @@
 import os
 import sys
 import shutil
-from convert_post_to_html import convert_post_to_html as convert_post
-from convert_post_to_html import extract_metadata
+from convert_post_to_html import convert_posts_in_folder_to_html, extract_metadata_from_folder, extract_metadata_from_post
 from datetime import datetime
 import json
 from bs4 import BeautifulSoup
@@ -20,14 +19,14 @@ date_format = "%B %d, %Y" # ex. October 4, 2024
 recent_posts_limit = 5 # number of recent posts to show on home page
 
 # copy all non-draft posts into /markdown
-def copy_markdown_from_obsidian():
-    posts_folder = os.environ['HOME'] + "/Notes/Writing/Posts"
+def copy_markdown_drafts_from_folder(folder):
+    posts_folder = os.environ['HOME'] + folder
     for file in os.listdir(posts_folder):
-        metadata = extract_metadata(posts_folder + "/" + file)
+        metadata = extract_metadata_from_post(posts_folder + "/" + file)
         if not metadata['draft']:
             shutil.copy2(posts_folder + "/" + file, "./markdown")        
 
-def create_pdf_list():
+def create_pdf_list_page():
     html_list = "<ol>\n"
     for file in os.listdir("pdfs"):
         # formatted_date = datetime.strptime(date, date_format).strftime("%B %d, %Y")
@@ -89,7 +88,7 @@ def generate_sorted_date_list(post_data):
     
     return html_list
 
-def populate_recent_posts(index_file, post_data):
+def populate_recent_posts_list(index_file, post_data):
 
     with open(index_file, 'r') as f:
         index_soup = BeautifulSoup(f, features='html.parser')
@@ -113,39 +112,37 @@ def populate_recent_posts(index_file, post_data):
     return
 
 
-def generate_site() -> None:
-
-    copy_markdown_from_obsidian()
-    
-    metadata = []
-
-    # convert all files in /markdown to html, extract metadata, and place in /posts
-    for file in os.listdir('markdown'):
-        if file == 'template.md':
-            continue
-        if file.endswith('.md'):
-            
-            metadata.append(convert_post('markdown/' + file, 'post_template.html'))
-
+def populate_search_page(metadata_list):
     # put metadata in search.html
     with open('search.html', 'r') as f:
         soup = BeautifulSoup(f, features='html.parser')
 
     posts = soup.head.find('meta', {'id': 'post-data'})
     assert(posts is not None)
-    posts['data'] = json.dumps(metadata)
-
+    posts['data'] = json.dumps(metadata_list)
     # replace search.html with new version
     with open('search.html', 'w') as f:
         f.write(soup.prettify())
+
+
+def main() -> None:
+
+    copy_markdown_drafts_from_folder("/Notes/Writing/Posts")
+
+    metadata_list: list[dict] = extract_metadata_from_folder('markdown')
+
+    convert_posts_in_folder_to_html('markdown', 'post_template.html')
+    populate_search_page(metadata_list)
     
-    populate_recent_posts('index.html', metadata)
-    create_pdf_list()
+    populate_recent_posts_list('index.html', metadata_list)
+    
+    create_pdf_list_page()
+    
     return
 
 if __name__ == "__main__":
     if not os.listdir('markdown'):
         print("ERROR: No files in ./markdown. Exiting.")
         sys.exit(1)
-    generate_site()
+    main()
     print("Generated site.")

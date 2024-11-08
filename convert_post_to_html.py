@@ -14,26 +14,44 @@ import pypandoc
 from bs4 import BeautifulSoup
 import yaml
 
-def extract_metadata(markdown_file):
+def extract_metadata_from_folder(folder) -> list:
+    metadata_list = []
+    for file in os.listdir(folder):
+        if file == 'template.md':
+            continue
+        if file.endswith('.md'):
+            metadata_list.append(extract_metadata_from_post(folder + "/" + file))
+    return metadata_list         
+        
 
-    # check if argument is file
-    if os.path.isfile(markdown_file):
-        with open(markdown_file, 'r') as f:
-            markdown = f.read()
-    else:
-        markdown = markdown_file
+def extract_metadata_from_post(markdown_file):
+
+    with open(markdown_file, 'r') as f:
+        markdown = f.read()
+
     # Split the content to get the front matter
     front_matter = markdown.split('---', 2)
     if len(front_matter) < 3:
         print("YAML front matter not found. Exiting!")
-        print("File text or filename:")
-        print(markdown_file)
+        print("File text or filename:" + markdown_file)
+        print("Front Matter: ")
+        print(front_matter)
         sys.exit(1)
 
     # Parse the front matter as YAML
+    # print("Loading YAML: filename: " + markdown_file)
+    # print(front_matter)
     front_matter_data = yaml.safe_load(front_matter[1])
     # print(front_matter_data)
     metadata = {}
+
+    filename = markdown_file.split('/')[-1].split('.md')[0]
+    filename = filename.lower()
+    filename = filename.replace(' ', '_')
+    filename += ".html"
+    metadata['filename'] = filename
+    print("filename: " + filename)
+    
     # Extract the tags
     metadata['tags'] = front_matter_data.get('tags', [])
     if 'published' in front_matter_data:
@@ -42,16 +60,20 @@ def extract_metadata(markdown_file):
         metadata['date'] = front_matter_data.get('date', [])
     metadata['updated'] = front_matter_data.get('updated', [])
     metadata['draft'] = front_matter_data.get('draft', [])
+    metadata['title'] = front_matter_data.get('title', [])
     return metadata
     
     
 # convert to html and place in posts
 def convert_post_to_html(markdown_file, template_file):
 
-    if markdown_file[:8] != "markdown":
-        print("Script must be run from webroot. Exiting.")
-        sys.exit(1)
-    
+    # if markdown_file[:8] != "markdown":
+    #     print("Script must be run from webroot. Exiting.")
+    #     sys.exit(1)
+
+    metadata = extract_metadata_from_post(markdown_file)
+
+        
     with open(markdown_file, 'r') as f:
         markdown_content = f.read()
     
@@ -81,17 +103,16 @@ def convert_post_to_html(markdown_file, template_file):
     # title is at top of document, ex '# Title'
     # Date is second, ex 'Date: Sep 14 2024'
     # Tags are third, ex 'Tags: film, photography'
-    metadata = extract_metadata(markdown_content)
+    # metadata = extract_metadata_from_post(markdown_content)
 
     #convert post title to filename, ex. 'markdown/How My Blog Works'.md -> 'posts/how_my_blog_works.html'
-    output_file = markdown_file[9:-3]
-    output_file = output_file.lower()
-    output_file = output_file.replace(' ', '_')
-    output_file += ".html"
-    output_file = "posts/" + output_file
+    output_file = metadata["filename"]
+    # output_file = output_file.lower()
+    # output_file = output_file.replace(' ', '_')
+    # output_file += ".html"
+    # output_file = "posts/" + output_file
 
-    metadata["filename"] = output_file
-    metadata["title"] = markdown_file[9:-3]
+    # metadata["filename"] = output_file
 
     ### Insert content into template
     
@@ -128,6 +149,11 @@ def convert_post_to_html(markdown_file, template_file):
     tsoup.find('div', {'class': 'content'}).clear() # remove child tags
     tsoup.find('div', {'class': 'content'}).append(md_soup)
 
+    # print(f"convert_post_to_html: metadata for post: {metadata["title"]}")
+    # print(metadata)
+
+    # return str(tsoup)
+
     # Write the final HTML to the output file
     with open(output_file, 'w') as f:
         f.write(str(tsoup))
@@ -135,6 +161,11 @@ def convert_post_to_html(markdown_file, template_file):
     print(f"convert_post_to_html: metadata for post: {metadata["title"]}")
     print(metadata)
     return metadata
+
+def convert_posts_in_folder_to_html(src_folder, template_file):
+    for file in os.listdir(src_folder):
+        convert_post_to_html(src_folder + "/" + file, template_file)
+                
 
 
 if __name__ == "__main__":
@@ -146,4 +177,4 @@ if __name__ == "__main__":
     template_file = sys.argv[2]
 
     metadata = convert_post_to_html(markdown_file, template_file)
-    print(f"Converted {markdown_file} to {metadata["filename"]} using template {template_file}")
+    # print(f"Converted {markdown_file} to {metadata["filename"]} using template {template_file}")

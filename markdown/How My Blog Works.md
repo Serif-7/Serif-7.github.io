@@ -1,10 +1,12 @@
 ---
+title: How My Blog Works
+published: November 7, 2024
+updated: Never
 tags:
   - technical
-published: October 5, 2024
-updated: Never
 draft: false
 ---
+
 Having a blog is somewhat expected of career seeking techies now. Wasn't always this way. It used to be, and still is, something people did for fun, to show off their work and their website skills; They did it as a way of contributing to the public knowledge. I used to have a Hugo blog, but didn't feel motivated to work on it. Felt very cookie cutter. I wrote one post about Morrowind and that was it. I didn't care to learn what shortcodes were or how the templating engine worked, I just wanted my posts online.
 
 Recently I hacked together my own static site generator. I have made it according to my aesthetics and design philosophy, which is as simple and easily accessible as possible, with good documentation.
