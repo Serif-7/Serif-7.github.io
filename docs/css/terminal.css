@@ -13,6 +13,7 @@ html, body {
     /* display: flex; */
     font-family: 'Iosevka Web', monospace;
     font-size: 18px;
+    background-image: url("/images/output.png");
 }
 body {
     background-color: var(--background);
