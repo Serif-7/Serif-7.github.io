@@ -1,5 +1,6 @@
 # The URL the site will be built for
-base_url = "https://endsoflines.com"
+# base_url = "https://endsoflines.com"
+base_url = "https://serif-7.github.io"
 
 # The site title and description; used in feeds by default.
 title = "Ends of Lines"

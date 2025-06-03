@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 Allow: /
-Sitemap: https://endsoflines.com/sitemap.xml
+Sitemap: https://serif-7.github.io/sitemap.xml
