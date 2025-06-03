@@ -26,7 +26,9 @@ jobs:
       - name: Install nix
         uses: nixbuild/nix-quick-install-action@v29
       - name: Build the website
-        run: nix run nixpkgs#zola -- build -o public
+        run: nix run nixpkgs#zola build
+      - name: Verify build output
+        run: ls -la public/
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
