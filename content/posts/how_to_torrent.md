@@ -8,7 +8,7 @@ I was seeing people, several people, on Twitter say they didn't know how to down
 The basic problem torrenting solves is sharing files. Let's say you want to distribute a public domain book, which is perfectly legal to do. As an example, we will use *Frankenstein*. You could just have people download it directly from you, but that is relatively slow, and if you want to distribute that book to quite a lot of people, that would eat up your bandwidth and make your local network slower. So, the (oversimplified) way torrenting works is that I send the entire file to the first person myself. Then, I and the first person each send *half* the file to the next person, and then I, the first person, and the second all send a *third* of the file to the next, and it proceeds like that in fourths, fifths, sixths, sevenths, eighths, ninths, tenths, and so on until we have a large enough group of people who are all sending fractional amounts of Frankenstein to anybody who might want it. This is essentially what the BitTorrent Protocol allows you to do. Instead of having a central server or site send every file, in full, directly to each person who asks for it, you have a network of people who send a little bit of the file when you announce to all of them you want it.
 
 The way this works in practice looks like this:
-1. you install a torrent client. I recommend [qbittorrent][https://www.qbittorrent.org/].
+1. you install a torrent client. I recommend [qbittorrent](https://www.qbittorrent.org/).
 2. you find a site that distributes .torrent files (see public tracker list below)
 3. you download a .torrent file
 4. double-click on it or click the '+' symbol in qbittorrent
@@ -31,8 +31,9 @@ These are the basics of how to torrent. If any part of this was confusing, shoot
 * **seedbox**: a service that handles downloading and seeding for you.
 
 **Popular public trackers:**
-https://1337x.to/
-https://thepiratebay.org/index.html
-https://github.com/ngosang/trackerslist?tab=readme-ov-file (big list)
+* https://1337x.to/
+* https://thepiratebay.org/index.html
+* https://github.com/ngosang/trackerslist?tab=readme-ov-file (big list)
+
 NOTE: I strongly recommend you install ad blockers before using these sites, and also use your own judgement. Movie files tend to be .mkv or .mp4, and these are, in my experience, very safe. You aren't going to get a virus because of these. Same for .mp3, .flac, .opus (music) or .epub, .mobi, .azw3 (books). On the other hand, I would recommend not downloading .pdf and ESPECIALLY not .exe or .dmg files, as those are software. Do not trust software from the internet as it can easily contain malware.
 
