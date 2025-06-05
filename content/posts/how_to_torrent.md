@@ -2,9 +2,10 @@
 title = "> How to Torrent, for Dummies"
 description = "Torrenting Guide"
 date = 2025-06-04
+updated = 2025-06-05
 +++
 
-I was seeing people, several people, on Twitter say they didn't know how to download or use torrents, and that they were generally confused by how it all works, and considered it esoteric techie stuff. There are, of course, publicly available guides on how to use torrents and that explain the basic concepts, but I suppose I'll write my own so it's easier to bring people up to speed.
+I was seeing several people on Twitter say they didn't know how to download or use torrents, and that they were generally confused by how it all works, and considered it esoteric techie stuff. There are, of course, publicly available guides on how to use torrents and that explain the basic concepts, but I suppose I'll write my own so it's easier to bring people up to speed.
 
 The basic problem torrenting solves is sharing files. Let's say you want to distribute a public domain book, which is perfectly legal to do. As an example, we will use *Frankenstein*. You could just have people download it directly from you, but that is relatively slow, and if you want to distribute that book to quite a lot of people, that would eat up your bandwidth and make your local network slower. So, the (oversimplified) way torrenting works is that I send the entire file to the first receiver myself. Then, I and the receiver each send *half* the file to the next receiver, and then the first receiver, the second receiver, and myself all send a *third* of the file to the next, and it proceeds like that in fourths, fifths, sixths, sevenths, eighths, ninths, tenths, and so on until we have a large enough group of people who are all sending fractional amounts of Frankenstein to anybody who might want it. This is essentially what the BitTorrent Protocol allows you to do. Instead of having a central server or site send every file, in full, directly to each person who asks for it, you have a network of people who send a little bit of the file when you announce to all of them you want it.
 
