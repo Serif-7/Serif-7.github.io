@@ -11,9 +11,9 @@ The basic problem torrenting solves is sharing files. Let's say you want to dist
 
 The way this works in practice looks like this:
 1. you install a torrent client. I recommend [qbittorrent](https://www.qbittorrent.org/).
-2. you find a site that distributes .torrent files (see public tracker list below)
-	1. a .torrent file is essentially a list of everyone who is currently seeding the file.
-3. you download a .torrent file
+2. you find a site that distributes `.torrent` files (see public tracker list below)
+	1. a `.torrent file` is essentially a list of everyone who is currently seeding the file.
+3. you download a `.torrent file`
 4. double-click on it or click the '+' symbol in qbittorrent
 5. dialog pops up asking where you want to put the file on your computer
 6. it downloads. Depending on the number of people seeding (actively sharing) the file it may take a while. You can see the number of seeders on the site before you download the file.
@@ -38,5 +38,5 @@ These are the basics of how to torrent. If any part of this was confusing, shoot
 * https://thepiratebay.org/index.html
 * https://github.com/ngosang/trackerslist?tab=readme-ov-file (big list)
 
-NOTE: I strongly recommend you install ad blockers before using these sites, and also use your own judgement. Movie files tend to be .mkv or .mp4, and these are, in my experience, very safe. You aren't going to get a virus because of these. Same for .mp3, .flac, .opus (music) or .epub, .mobi, .azw3 (books). On the other hand, I would recommend not downloading .pdf and ESPECIALLY not .exe or .dmg files, as those are software. Do not trust torrented software, ever, as it can easily contain malware.
+NOTE: I strongly recommend you install ad blockers before using these sites, and also use your own judgement. Movie files tend to be .`mkv`or `.mp4`, and these are, in my experience, very safe. You aren't going to get a virus because of these. Same for `.mp3`, `.flac`, `.opus` (music) or `.epub`, `.mobi`, `.azw3` (books). On the other hand, I would recommend not downloading `.pdf` and ESPECIALLY not `.exe` or `.dmg` files, as those are software. Do not trust torrented software, ever, as it can easily contain malware.
 
