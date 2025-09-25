@@ -1,5 +1,5 @@
 ---
-title: What is Conscious Experience?
+title: "> What is Conscious Experience?"
 date: 2025-09-25
 tags:
   - philosophy
@@ -31,7 +31,7 @@ Experiences of phenomena are certainly real, but where are they? In the brain it
 
 **Properties of Consciousness**
 1. *Linked to a Physical System:* Barring [panpsychism](https://en.wikipedia.org/wiki/Panpsychism), conscious experience seems to arise from physical brains.
-2. *Non-Observible*: We can't observe conscious experience from the third-person or even empirically verify that it exists. We can scan a brain and perhaps see whatever object the brain is seeing, but we can't access what it was subjectively *like* for the person to observe that object.
+2. *Non-Observable*: We can't observe conscious experience from the third-person or even empirically verify that it exists. We can scan a brain and perhaps see whatever object the brain is seeing, but we can't access what it was subjectively *like* for the person to observe that object.
 3. *Irreducable:* Consciousness, as far as we can tell, cannot be explained in terms of some lesser mechanism. This contrasts with psychological processes like learning, memory, or language, where we can explain it as some pattern of brain activity that is a response to the organism's environment. We can see and inspect all the wheels and gears of the operations in the brain that constitute what those things *are*. We can't do the same for conscious experience. No amount of investigation into neurons and synapses will explain how or why there is 'something that it is like' to be a human being, instead of it being like nothing at all.
 4. *Unpredictable:* Even knowing all the facts of physics, biology, information processing, dynamic systems, neurology, and so on, there would still be no reason to then predict that humans would have conscious experience. Despite being linked to the physical world in some way, it doesn't seem to logically follow from any physical law.
 
