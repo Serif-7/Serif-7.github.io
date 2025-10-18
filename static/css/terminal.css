@@ -206,6 +206,11 @@ input {
     color: #666;
 }
 
+.footnote-definition {
+    font-size: 16px;
+}
+
+
 /* typing animation */
 
 /* .site-title h1, */
