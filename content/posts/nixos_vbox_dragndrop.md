@@ -2,7 +2,7 @@
 title = "> Bug: VirtualBox Drag and Drop and Bidirectional Clipboard not Working on NixOS"
 description = ""
 date = 2025-06-08
-draft = false
+draft = true
 +++
 
 I wanted to drag and drop files from my VirtualBox VMs to my NixOS host, and also have a bidirectional clipboard. I searched my ~/Dotfiles folder for all relevant config:

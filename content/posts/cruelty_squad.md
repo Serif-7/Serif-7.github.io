@@ -1,5 +1,5 @@
 +++
-title = "Commentaries on Cruelty Squad"
+title = " > Commentaries on Cruelty Squad"
 description = "Cruelty Squad review"
 date = 2025-06-03
 updated = 2025-06-04
